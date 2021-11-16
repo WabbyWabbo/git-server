@@ -23,7 +23,7 @@ public abstract class MyPage extends LayoutPage {
 
 	@Override
 	protected String getPageTitle() {
-		return "My - OneDev";
+		return "我的";
 	}
 	
 }

@@ -141,17 +141,17 @@ public class AuthenticatorPage extends AdministrationPage {
 						new UsernamePasswordToken(token.getUserName(), token.getPassword()));
 				StringBuilder retrievedInfoBuilder = new StringBuilder();
 				if (authenticated.getFullName() != null) {
-					retrievedInfoBuilder.append("Full Name: ")
+					retrievedInfoBuilder.append("全称: ")
 							.append(authenticated.getFullName())
 							.append("\n");
 				}
 				if (authenticated.getEmail() != null) {
-					retrievedInfoBuilder.append("Email: ")
+					retrievedInfoBuilder.append("邮箱: ")
 							.append(authenticated.getEmail())
 							.append("\n");
 				}
 				if (authenticated.getGroupNames() != null) {
-					retrievedInfoBuilder.append("Groups: ")
+					retrievedInfoBuilder.append("组: ")
 							.append(Joiner.on(", ").join(authenticated.getGroupNames()))
 							.append("\n");
 				}

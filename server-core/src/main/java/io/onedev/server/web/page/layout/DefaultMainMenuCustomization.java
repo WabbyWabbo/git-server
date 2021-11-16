@@ -26,14 +26,14 @@ public class DefaultMainMenuCustomization implements MainMenuCustomization {
 	public List<SidebarMenuItem> getMainMenuItems() {
 		List<SidebarMenuItem> menuItems = new ArrayList<>();
 		
-		menuItems.add(new SidebarMenuItem.Page("project", "Projects", ProjectListPage.class, 
+		menuItems.add(new SidebarMenuItem.Page("project", "项目", ProjectListPage.class, 
 				ProjectListPage.paramsOf(0, 0), Lists.newArrayList(NewProjectPage.class)));
-		menuItems.add(new SidebarMenuItem.Page("pull-request", "Pull Requests", PullRequestListPage.class, 
-				PullRequestListPage.paramsOf(0)));
-		menuItems.add(new SidebarMenuItem.Page("bug", "Issues", IssueListPage.class, 
-				IssueListPage.paramsOf(0)));
-		menuItems.add(new SidebarMenuItem.Page("play-circle", "Builds", BuildListPage.class, 
-				BuildListPage.paramsOf(0, 0)));
+//		menuItems.add(new SidebarMenuItem.Page("pull-request", "拉取请求", PullRequestListPage.class, 
+//				PullRequestListPage.paramsOf(0)));
+//		menuItems.add(new SidebarMenuItem.Page("bug", "问题", IssueListPage.class, 
+//				IssueListPage.paramsOf(0)));
+//		menuItems.add(new SidebarMenuItem.Page("play-circle", "构建", BuildListPage.class, 
+//				BuildListPage.paramsOf(0, 0)));
 		
 		return menuItems;
 	}

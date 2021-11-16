@@ -177,7 +177,7 @@ public class Project extends AbstractEntity {
 	
 	public static final String PROP_UPDATE_DATE = "updateDate";
 	
-	public static final String NAME_DESCRIPTION = "Description";
+	public static final String NAME_DESCRIPTION = "描述";
 	
 	public static final String PROP_DESCRIPTION = "description";
 	
@@ -1122,7 +1122,7 @@ public class Project extends AbstractEntity {
 		this.codeComments = codeComments;
 	}
 	
-	@Editable(order=250, name="Code Management", description="Whether or not to enable code management for the project")
+	//@Editable(order=250, name="代码管理", description="是否允许为项目添加代码管理")
 	public boolean isCodeManagementEnabled() {
 		return codeManagementEnabled;
 	}
@@ -1131,7 +1131,7 @@ public class Project extends AbstractEntity {
 		this.codeManagementEnabled = codeManagementEnabled;
 	}
 
-	@Editable(order=300, name="Issue management", description="Whether or not to enable issue management for the project")
+	//@Editable(order=300, name="Issue management", description="Whether or not to enable issue management for the project")
 	public boolean isIssueManagementEnabled() {
 		return issueManagementEnabled;
 	}

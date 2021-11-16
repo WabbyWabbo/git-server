@@ -144,93 +144,93 @@ public abstract class ProjectPage extends LayoutPage implements ProjectAware {
 		List<SidebarMenuItem> menuItems = new ArrayList<>();
 		
 		if (getProject().isCodeManagementEnabled() && SecurityUtils.canReadCode(getProject())) {
-			menuItems.add(new SidebarMenuItem.Page("files", "Files", 
+			menuItems.add(new SidebarMenuItem.Page("files", "文件", 
 					ProjectBlobPage.class, ProjectBlobPage.paramsOf(getProject())));
-			menuItems.add(new SidebarMenuItem.Page("commit", "Commits", 
+			menuItems.add(new SidebarMenuItem.Page("commit", "提交", 
 					ProjectCommitsPage.class, ProjectCommitsPage.paramsOf(getProject(), null), 
 					Lists.newArrayList(CommitDetailPage.class)));
-			menuItems.add(new SidebarMenuItem.Page("branch", "Branches", 
+			menuItems.add(new SidebarMenuItem.Page("branch", "分支", 
 					ProjectBranchesPage.class, ProjectBranchesPage.paramsOf(getProject())));
-			menuItems.add(new SidebarMenuItem.Page("tag", "Tags", 
+			menuItems.add(new SidebarMenuItem.Page("tag", "标签", 
 					ProjectTagsPage.class, ProjectTagsPage.paramsOf(getProject())));
-			menuItems.add(new SidebarMenuItem.Page("pull-request", "Pull Requests", 
+			menuItems.add(new SidebarMenuItem.Page("pull-request", "拉取请求", 
 					ProjectPullRequestsPage.class, ProjectPullRequestsPage.paramsOf(getProject(), 0), 
 					Lists.newArrayList(NewPullRequestPage.class, PullRequestDetailPage.class, InvalidPullRequestPage.class)));
 		}		
-		if (getProject().isIssueManagementEnabled()) {
-			menuItems.add(new SidebarMenuItem.Page("bug", "Issues", 
-					ProjectIssueListPage.class, ProjectIssueListPage.paramsOf(getProject(), 0), 
-					Lists.newArrayList(NewIssuePage.class, IssueDetailPage.class)));
-			menuItems.add(new SidebarMenuItem.Page("split", "Boards", 
-					IssueBoardsPage.class, IssueBoardsPage.paramsOf(getProject())));
-			
-			menuItems.add(new SidebarMenuItem.Page("milestone", "Milestones", 
-					MilestoneListPage.class, MilestoneListPage.paramsOf(getProject(), false, null), 
-					Lists.newArrayList(NewMilestonePage.class, MilestoneDetailPage.class, MilestoneEditPage.class)));
-			
-		}
+//		if (getProject().isIssueManagementEnabled()) {
+//			menuItems.add(new SidebarMenuItem.Page("bug", "问题", 
+//					ProjectIssueListPage.class, ProjectIssueListPage.paramsOf(getProject(), 0), 
+//					Lists.newArrayList(NewIssuePage.class, IssueDetailPage.class)));
+//			menuItems.add(new SidebarMenuItem.Page("split", "Boards", 
+//					IssueBoardsPage.class, IssueBoardsPage.paramsOf(getProject())));
+//			
+//			menuItems.add(new SidebarMenuItem.Page("milestone", "Milestones", 
+//					MilestoneListPage.class, MilestoneListPage.paramsOf(getProject(), false, null), 
+//					Lists.newArrayList(NewMilestonePage.class, MilestoneDetailPage.class, MilestoneEditPage.class)));
+//			
+//		}
 		
-		if (getProject().isCodeManagementEnabled()) {
-			menuItems.add(new SidebarMenuItem.Page("play-circle", "Builds", 
-					ProjectBuildsPage.class, ProjectBuildsPage.paramsOf(getProject(), 0), 
-					Lists.newArrayList(BuildDetailPage.class, InvalidBuildPage.class)));
-			
-			if (SecurityUtils.canReadCode(getProject())) {
-				menuItems.add(new SidebarMenuItem.Page("comments", "Code Comments", 
-						ProjectCodeCommentsPage.class, ProjectCodeCommentsPage.paramsOf(getProject(), 0)));
-				menuItems.add(new SidebarMenuItem.Page("diff", "Code Compare", 
-						RevisionComparePage.class, RevisionComparePage.paramsOf(getProject())));
-			}
-		}
+//		if (getProject().isCodeManagementEnabled()) {
+//			menuItems.add(new SidebarMenuItem.Page("play-circle", "Builds", 
+//					ProjectBuildsPage.class, ProjectBuildsPage.paramsOf(getProject(), 0), 
+//					Lists.newArrayList(BuildDetailPage.class, InvalidBuildPage.class)));
+//			
+//			if (SecurityUtils.canReadCode(getProject())) {
+//				menuItems.add(new SidebarMenuItem.Page("comments", "Code Comments", 
+//						ProjectCodeCommentsPage.class, ProjectCodeCommentsPage.paramsOf(getProject(), 0)));
+//				menuItems.add(new SidebarMenuItem.Page("diff", "Code Compare", 
+//						RevisionComparePage.class, RevisionComparePage.paramsOf(getProject())));
+//			}
+//		}
 		
-		menuItems.add(new SidebarMenuItem.Page("tree", "Child Projects", 
+		menuItems.add(new SidebarMenuItem.Page("tree", "子项目", 
 				ProjectChildrenPage.class, ProjectChildrenPage.paramsOf(getProject(), null, 0)));
 		
-		List<SidebarMenuItem> statsMenuItems = new ArrayList<>();
-		
-		if (getProject().isCodeManagementEnabled() && SecurityUtils.canReadCode(getProject())) {
-			statsMenuItems.add(new SidebarMenuItem.Page(null, "Contributions", 
-					ProjectContribsPage.class, ProjectContribsPage.paramsOf(getProject())));
-			statsMenuItems.add(new SidebarMenuItem.Page(null, "Source Lines", 
-					SourceLinesPage.class, SourceLinesPage.paramsOf(getProject())));
-		}
-		
-		List<StatisticsMenuContribution> contributions = new ArrayList<>(OneDev.getExtensions(StatisticsMenuContribution.class));
-		contributions.sort(Comparator.comparing(StatisticsMenuContribution::getOrder));
-		
-		for (StatisticsMenuContribution contribution: contributions)
-			statsMenuItems.addAll(contribution.getMenuItems(getProject()));
-		
-		if (!statsMenuItems.isEmpty())
-			menuItems.add(new SidebarMenuItem.SubMenu("statistics", "Statistics", statsMenuItems));
+//		List<SidebarMenuItem> statsMenuItems = new ArrayList<>();
+//		
+//		if (getProject().isCodeManagementEnabled() && SecurityUtils.canReadCode(getProject())) {
+//			statsMenuItems.add(new SidebarMenuItem.Page(null, "Contributions", 
+//					ProjectContribsPage.class, ProjectContribsPage.paramsOf(getProject())));
+//			statsMenuItems.add(new SidebarMenuItem.Page(null, "Source Lines", 
+//					SourceLinesPage.class, SourceLinesPage.paramsOf(getProject())));
+//		}
+//		
+//		List<StatisticsMenuContribution> contributions = new ArrayList<>(OneDev.getExtensions(StatisticsMenuContribution.class));
+//		contributions.sort(Comparator.comparing(StatisticsMenuContribution::getOrder));
+//		
+//		for (StatisticsMenuContribution contribution: contributions)
+//			statsMenuItems.addAll(contribution.getMenuItems(getProject()));
+//		
+//		if (!statsMenuItems.isEmpty())
+//			menuItems.add(new SidebarMenuItem.SubMenu("statistics", "Statistics", statsMenuItems));
 		
 		if (SecurityUtils.canManage(getProject())) {
 			List<SidebarMenuItem> settingMenuItems = new ArrayList<>();
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "General Setting", 
+			settingMenuItems.add(new SidebarMenuItem.Page(null, "一般设置", 
 					GeneralProjectSettingPage.class, GeneralProjectSettingPage.paramsOf(getProject())));
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "Edit Avatar", 
+			settingMenuItems.add(new SidebarMenuItem.Page(null, "编辑图标", 
 					AvatarEditPage.class, AvatarEditPage.paramsOf(getProject())));
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "Authorizations", 
+			settingMenuItems.add(new SidebarMenuItem.Page(null, "授权管理", 
 					ProjectAuthorizationsPage.class, ProjectAuthorizationsPage.paramsOf(getProject())));
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "Branch Protection", 
-					BranchProtectionsPage.class, BranchProtectionsPage.paramsOf(getProject())));
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "Tag Protection", 
-					TagProtectionsPage.class, TagProtectionsPage.paramsOf(getProject())));
+//			settingMenuItems.add(new SidebarMenuItem.Page(null, "Branch Protection", 
+//					BranchProtectionsPage.class, BranchProtectionsPage.paramsOf(getProject())));
+//			settingMenuItems.add(new SidebarMenuItem.Page(null, "Tag Protection", 
+//					TagProtectionsPage.class, TagProtectionsPage.paramsOf(getProject())));
 			
-			List<SidebarMenuItem> buildSettingMenuItems = new ArrayList<>();
-			
-			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Job Secrets", 
-					JobSecretsPage.class, JobSecretsPage.paramsOf(getProject())));
-			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Action Authorizations", 
-					ActionAuthorizationsPage.class, ActionAuthorizationsPage.paramsOf(getProject())));
-			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Build Preserve Rules", 
-					BuildPreservationsPage.class, BuildPreservationsPage.paramsOf(getProject())));
-			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Default Fixed Issue Filters", 
-					DefaultFixedIssueFiltersPage.class, DefaultFixedIssueFiltersPage.paramsOf(getProject())));
-			
-			settingMenuItems.add(new SidebarMenuItem.SubMenu(null, "Build Setting", buildSettingMenuItems));
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "Web Hooks", 
-					WebHooksPage.class, WebHooksPage.paramsOf(getProject())));
+//			List<SidebarMenuItem> buildSettingMenuItems = new ArrayList<>();
+//			
+//			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Job Secrets", 
+//					JobSecretsPage.class, JobSecretsPage.paramsOf(getProject())));
+//			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Action Authorizations", 
+//					ActionAuthorizationsPage.class, ActionAuthorizationsPage.paramsOf(getProject())));
+//			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Build Preserve Rules", 
+//					BuildPreservationsPage.class, BuildPreservationsPage.paramsOf(getProject())));
+//			buildSettingMenuItems.add(new SidebarMenuItem.Page(null, "Default Fixed Issue Filters", 
+//					DefaultFixedIssueFiltersPage.class, DefaultFixedIssueFiltersPage.paramsOf(getProject())));
+//			
+//			settingMenuItems.add(new SidebarMenuItem.SubMenu(null, "Build Setting", buildSettingMenuItems));
+//			settingMenuItems.add(new SidebarMenuItem.Page(null, "Web Hooks", 
+//					WebHooksPage.class, WebHooksPage.paramsOf(getProject())));
 			
 			for (ProjectSettingContribution contribution:OneDev.getExtensions(ProjectSettingContribution.class)) {
 				for (Class<? extends ContributedProjectSetting> settingClass: contribution.getSettingClasses()) {
@@ -242,7 +242,7 @@ public abstract class ProjectPage extends LayoutPage implements ProjectAware {
 				}
 			}
 			
-			menuItems.add(new SidebarMenuItem.SubMenu("sliders", "Settings", settingMenuItems));
+			menuItems.add(new SidebarMenuItem.SubMenu("sliders", "设置", settingMenuItems));
 		}
 		
 		String avatarUrl = OneDev.getInstance(AvatarManager.class).getAvatarUrl(getProject());

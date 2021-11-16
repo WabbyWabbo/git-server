@@ -208,57 +208,57 @@ public abstract class BuildListPanel extends Panel {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(new AjaxLink<Void>("showSavedQueries") {
-
-			@Override
-			public void onEvent(IEvent<?> event) {
-				super.onEvent(event);
-				if (event.getPayload() instanceof SavedQueriesClosed) {
-					((SavedQueriesClosed) event.getPayload()).getHandler().add(this);
-				}
-			}
-			
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setVisible(getQuerySaveSupport() != null && !getQuerySaveSupport().isSavedQueriesVisible());
-			}
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				send(getPage(), Broadcast.BREADTH, new SavedQueriesOpened(target));
-				target.add(this);
-			}
-			
-		}.setOutputMarkupPlaceholderTag(true));
+//		add(new AjaxLink<Void>("showSavedQueries") {
+//
+//			@Override
+//			public void onEvent(IEvent<?> event) {
+//				super.onEvent(event);
+//				if (event.getPayload() instanceof SavedQueriesClosed) {
+//					((SavedQueriesClosed) event.getPayload()).getHandler().add(this);
+//				}
+//			}
+//			
+//			@Override
+//			protected void onConfigure() {
+//				super.onConfigure();
+//				setVisible(getQuerySaveSupport() != null && !getQuerySaveSupport().isSavedQueriesVisible());
+//			}
+//
+//			@Override
+//			public void onClick(AjaxRequestTarget target) {
+//				send(getPage(), Broadcast.BREADTH, new SavedQueriesOpened(target));
+//				target.add(this);
+//			}
+//			
+//		}.setOutputMarkupPlaceholderTag(true));
 		
-		add(saveQueryLink = new AjaxLink<Void>("saveQuery") {
-
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setEnabled(querySubmitted && queryModel.getObject() != null);
-				setVisible(SecurityUtils.getUser() != null && getQuerySaveSupport() != null);
-			}
-
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				configure();
-				if (!isEnabled()) 
-					tag.append("class", "disabled", " ");
-				if (!querySubmitted)
-					tag.put("title", "Query not submitted");
-				else if (queryModel.getObject() == null)
-					tag.put("title", "Can not save malformed query");
-			}
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				getQuerySaveSupport().onSaveQuery(target, queryModel.getObject().toString());
-			}		
-			
-		}.setOutputMarkupPlaceholderTag(true));
+//		add(saveQueryLink = new AjaxLink<Void>("saveQuery") {
+//
+//			@Override
+//			protected void onConfigure() {
+//				super.onConfigure();
+//				setEnabled(querySubmitted && queryModel.getObject() != null);
+//				setVisible(SecurityUtils.getUser() != null && getQuerySaveSupport() != null);
+//			}
+//
+//			@Override
+//			protected void onComponentTag(ComponentTag tag) {
+//				super.onComponentTag(tag);
+//				configure();
+//				if (!isEnabled()) 
+//					tag.append("class", "disabled", " ");
+//				if (!querySubmitted)
+//					tag.put("title", "Query not submitted");
+//				else if (queryModel.getObject() == null)
+//					tag.put("title", "Can not save malformed query");
+//			}
+//
+//			@Override
+//			public void onClick(AjaxRequestTarget target) {
+//				getQuerySaveSupport().onSaveQuery(target, queryModel.getObject().toString());
+//			}		
+//			
+//		}.setOutputMarkupPlaceholderTag(true));
 		
 		BasePage page = (BasePage) getPage();
 		

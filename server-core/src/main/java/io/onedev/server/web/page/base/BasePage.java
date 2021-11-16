@@ -284,13 +284,13 @@ public abstract class BasePage extends WebPage {
 	
 	public void unauthorized() {
 		if (getLoginUser() != null) 
-			throw new UnauthorizedException("You are not allowed to perform this operation");
+			throw new UnauthorizedException("无执行此操作的权限");
 		else 
 			throw new RestartResponseAtInterceptPageException(LoginPage.class);
 	}
 	
 	protected String getPageTitle() {
-		return "OneDev - Super Easy All-in-One DevOps Platform";
+		return "代码管理系统";
 	}
 
 	protected int getPageRefreshInterval() {

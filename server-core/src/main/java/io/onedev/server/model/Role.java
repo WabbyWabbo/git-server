@@ -48,10 +48,6 @@ import io.onedev.server.util.EditContext;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.ShowCondition;
 
-/**
- * @author robin
- *
- */
 @Entity
 @Table(indexes={@Index(columnList="name")})
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)

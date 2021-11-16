@@ -246,7 +246,7 @@ public class BuildListPage extends LayoutPage {
 	
 	@Override
 	protected String getPageTitle() {
-		return "Builds - OneDev";
+		return "构建";
 	}
 	
 }

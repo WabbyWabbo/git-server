@@ -3,7 +3,7 @@
 		<div class="sidebar-header">
 			<a wicket:id="brandLink" class="sidebar-brand">
 				<wicket:svg href="logo" class="icon"></wicket:svg>
-				ONEDEV			
+				代码管理			
 			</a>
 			<a href="javascript:void(0);" class="sidebar-mini-toggle d-none d-lg-inline"><wicket:svg href="expand3" class="icon"></wicket:svg></a>
 			<a href="javascript:void(0);" class="sidebar-close d-lg-none"><wicket:svg href="times" class="icon"></wicket:svg></a>
@@ -14,19 +14,7 @@
 				<div wicket:id="body" class="menu-body"></div>
 			</div>
 		</div>
-		<div class="sidebar-footer">
-			<div wicket:id="productVersion" class="sidebar-version"></div>
-			<div class="dropdown sidebar-help">
-				<a href="#" class="dropdown-toggle no-dropdown-caret" data-toggle="dropdown">
-					<wicket:svg href="question-o" class="icon"></wicket:svg>
-				</a>
-				<div class="dropdown-menu">
-					<a wicket:id="docLink" class="dropdown-item" target="_blank">Documentation</a>
-					<a href="https://code.onedev.io/projects/160/issues/list?query=%22State%22+is+%22Open%22" class="dropdown-item" target="_blank">Support &amp; Bug Report</a>
-					<a href="/help/api" class="dropdown-item" target="_blank">RESTful API</a>
-	          	</div>  					
-			</div>
-		</div>
+		
 	</div>
 	<div wicket:id="topbar" class="topbar">
 		<div class="topbar-left">
@@ -42,7 +30,7 @@
 			<a href="https://github.com/theonedev/onedev" class="github topbar-link d-none d-sm-inline" target="_blank">
 				<wicket:svg href="github" class="icon"></wicket:svg>
 			</a>
-	  		<a wicket:id="signIn" class="topbar-link sign-in"><wicket:svg href="login" class="icon"/> <span class="d-none d-sm-inline">Sign In</span></a>
+	  		<a wicket:id="signIn" class="topbar-link sign-in"><wicket:svg href="login" class="icon"/> <span class="d-none d-sm-inline">登录</span></a>
 			<div wicket:id="userInfo" class="dropdown user-info">
 				<a href="#" class="dropdown-toggle user-info no-dropdown-caret topbar-link" data-toggle="dropdown">
 					<img wicket:id="avatar"> 
@@ -51,24 +39,21 @@
 				<div class="dropdown-menu">
 					<a wicket:id="myProfile" class="dropdown-item">
 						<wicket:svg href="profile" class="icon mr-2"></wicket:svg>
-						My Profile
+						我的资料
 					</a>
 					<a wicket:id="myAvatar" class="dropdown-item">
 						<wicket:svg href="avatar" class="icon mr-2"></wicket:svg>
-						Edit Avatar
+						头像编辑
 					</a>
 					<a wicket:id="myPassword" class="dropdown-item">
 						<wicket:svg href="password" class="icon mr-2"></wicket:svg>
-						Change Password
+						修改密码
 					</a>
 					<a wicket:id="mySshKeys" class="dropdown-item">
 						<wicket:svg href="key" class="icon mr-2"></wicket:svg>
-						SSH Keys
+						SSH秘钥
 					</a>
-					<a wicket:id="myAccessToken" class="dropdown-item">
-						<wicket:svg href="token" class="icon mr-2"></wicket:svg>
-						Access Token
-					</a>
+					
 					<a wicket:id="signOut" class="dropdown-item">
 						<wicket:svg href="logout" class="icon mr-2"></wicket:svg>
 						<span wicket:id="label"></span>

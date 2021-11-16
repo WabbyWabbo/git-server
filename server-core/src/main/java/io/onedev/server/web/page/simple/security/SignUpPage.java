@@ -54,17 +54,17 @@ public class SignUpPage extends SimplePage {
 				User userWithSameName = userManager.findByName(user.getName());
 				if (userWithSameName != null) {
 					editor.error(new Path(new PathNode.Named(User.PROP_NAME)),
-							"Login name already used by another account");
+							"用户名已被占用");
 				} 
 				User userWithSameEmail = userManager.findByEmail(user.getEmail());
 				if (userWithSameEmail != null) {
 					editor.error(new Path(new PathNode.Named(User.PROP_EMAIL)),
-							"Email already used by another account");
+							"邮箱已被占用");
 				} 
 				if (editor.isValid()) {
 					user.setPassword(AppLoader.getInstance(PasswordService.class).encryptPassword(user.getPassword()));
 					userManager.save(user, null);
-					Session.get().success("Welcome to OneDev");
+					Session.get().success("欢迎");
 					SecurityUtils.getSubject().runAs(user.getPrincipals());
 					setResponsePage(MyAvatarPage.class);
 				}
@@ -87,12 +87,12 @@ public class SignUpPage extends SimplePage {
 
 	@Override
 	protected String getTitle() {
-		return "Sign Up";
+		return "注册";
 	}
 
 	@Override
 	protected String getSubTitle() {
-		return "Enter your details to create your account";
+		return "";
 	}
 
 }

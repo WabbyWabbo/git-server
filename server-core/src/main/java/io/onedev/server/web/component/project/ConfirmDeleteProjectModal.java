@@ -19,7 +19,7 @@ public abstract class ConfirmDeleteProjectModal extends ConfirmModalPanel {
 		Project project = getProject();
 		
 		OneDev.getInstance(ProjectManager.class).delete(project);
-		getSession().success("Project '" + project.getPath() + "' deleted");
+		getSession().success("项目 '" + project.getPath() + "' 已删除");
 		
 		onDeleted(target);
 	}
@@ -28,8 +28,8 @@ public abstract class ConfirmDeleteProjectModal extends ConfirmModalPanel {
 	
 	@Override
 	protected String getConfirmMessage() {
-		return "Everything inside this project and all child projects will be deleted and can not be recovered, "
-				+ "please type project path <code>" + getProject().getPath() + "</code> below to confirm deletion.";
+		return "此项目及其子项目将被删除且无法恢复， "
+				+ "请输入下面的项目路径 <code>" + getProject().getPath() + "</code> 来确认删除。";
 	}
 
 	@Override

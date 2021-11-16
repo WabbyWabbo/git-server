@@ -100,7 +100,7 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 	@Transactional
 	public void setupDefaults() {
 		Role childCreator = new Role();
-		childCreator.setName("Child Creator");
+		childCreator.setName("创建子项目");
 		childCreator.setCreateChildren(true);
 		childCreator.setCodePrivilege(CodePrivilege.READ);
 		ExcludeIssueFields allfieldsExcept = new ExcludeIssueFields();
@@ -114,7 +114,7 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 		save(childCreator, null);
 		
 		Role codeWriter = new Role();
-		codeWriter.setName("Code Writer");
+		codeWriter.setName("编写代码");
 		codeWriter.setCodePrivilege(CodePrivilege.WRITE);
 		codeWriter.setScheduleIssues(true);
 		codeWriter.setEditableIssueFields(new AllIssueFields());
@@ -127,7 +127,7 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 		save(codeWriter, null);
 
 		Role codeReader = new Role();
-		codeReader.setName("Code Reader");
+		codeReader.setName("阅读代码");
 		codeReader.setCodePrivilege(CodePrivilege.READ);
 		allfieldsExcept = new ExcludeIssueFields();
 		allfieldsExcept.getExcludeFields().add("Assignees");
@@ -140,7 +140,7 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 		save(codeReader, null);
 		
 		Role issueReporter = new Role();
-		issueReporter.setName("Issue Reporter");
+		issueReporter.setName("报告问题");
 		issueReporter.setCodePrivilege(CodePrivilege.NONE);
 		allfieldsExcept = new ExcludeIssueFields();
 		allfieldsExcept.getExcludeFields().add("Assignees");

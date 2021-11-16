@@ -250,7 +250,7 @@ public class IssueListPage extends LayoutPage {
 	
 	@Override
 	protected String getPageTitle() {
-		return "Issues - OneDev";
+		return "问题";
 	}
 	
 }

@@ -92,7 +92,7 @@ public class OneDev extends AbstractPlugin implements Serializable {
 		this.executorService = executorService;
 		this.listenerRegistry = listenerRegistry;
 		
-		initStage = new InitStage("Server is Starting...");
+		initStage = new InitStage("启动中...");
 	}
 	
 	@Override

@@ -119,26 +119,26 @@ public abstract class LayoutPage extends BasePage {
 				List<SidebarMenuItem> menuItems = new ArrayList<>(customization.getMainMenuItems());
 				if (SecurityUtils.isAdministrator()) {
 					List<SidebarMenuItem> administrationMenuItems = new ArrayList<>();
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "System Setting", 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "系统设置", 
 							SystemSettingPage.class, new PageParameters()));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "User Management", UserListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "用户管理", UserListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewUserPage.class, UserPage.class)));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Role Management", RoleListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "角色管理", RoleListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewRolePage.class, RoleDetailPage.class)));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Group Management", GroupListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "组管理", GroupListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewGroupPage.class, GroupPage.class)));
 					
 					List<SidebarMenuItem> securitySettingMenuItems = new ArrayList<>();
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "General Setting", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "一般设置", 
 							GeneralSecuritySettingPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "External Authentication", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "额外授权", 
 							AuthenticatorPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSO Providers", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "单点登录", 
 							SsoConnectorListPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSH Setting", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSH设置", 
 							SshSettingPage.class, new PageParameters()));
 					
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Security Setting", securitySettingMenuItems));
+					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "安全设置", securitySettingMenuItems));
 					
 					List<SidebarMenuItem> issueSettingMenuItems = new ArrayList<>();
 					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "Custom Fields", 
@@ -152,33 +152,33 @@ public abstract class LayoutPage extends BasePage {
 					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "Description Templates", 
 							IssueTemplateListPage.class, new PageParameters()));
 
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Issue Setting", issueSettingMenuItems));
-					
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Job Executors", 
-							JobExecutorsPage.class, new PageParameters()));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Agents", 
-							AgentListPage.class, AgentListPage.paramsOf(0), Lists.newArrayList(AgentDetailPage.class)));
-					
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Mail Setting", 
-							MailSettingPage.class, new PageParameters()));
-					
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Service Desk Setting", 
-							ServiceDeskSettingPage.class, new PageParameters()));
+//					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Issue Setting", issueSettingMenuItems));
+//					
+//					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Job Executors", 
+//							JobExecutorsPage.class, new PageParameters()));
+//					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Agents", 
+//							AgentListPage.class, AgentListPage.paramsOf(0), Lists.newArrayList(AgentDetailPage.class)));
+//					
+//					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Mail Setting", 
+//							MailSettingPage.class, new PageParameters()));
+//					
+//					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Service Desk Setting", 
+//							ServiceDeskSettingPage.class, new PageParameters()));
 					
 					List<SidebarMenuItem> notificationTemplateSettingMenuItems = new ArrayList<>();
-					notificationTemplateSettingMenuItems.add(new SidebarMenuItem.Page(null, "Issue", 
+					notificationTemplateSettingMenuItems.add(new SidebarMenuItem.Page(null, "问题", 
 							IssueNotificationTemplatePage.class, new PageParameters()));
-					notificationTemplateSettingMenuItems.add(new SidebarMenuItem.Page(null, "Pull Request", 
+					notificationTemplateSettingMenuItems.add(new SidebarMenuItem.Page(null, "拉取请求", 
 							PullRequestNotificationTemplatePage.class, new PageParameters()));
 					
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Notification Templates", 
-							notificationTemplateSettingMenuItems));
-					
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Performance Setting", 
-							PerformanceSettingPage.class, new PageParameters()));
-					
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Groovy Scripts", 
-							GroovyScriptListPage.class, new PageParameters()));
+//					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Notification Templates", 
+//							notificationTemplateSettingMenuItems));
+//					
+//					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Performance Setting", 
+//							PerformanceSettingPage.class, new PageParameters()));
+//					
+//					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Groovy Scripts", 
+//							GroovyScriptListPage.class, new PageParameters()));
 					
 					for (AdministrationSettingContribution contribution: 
 							OneDev.getExtensions(AdministrationSettingContribution.class)) {
@@ -192,16 +192,16 @@ public abstract class LayoutPage extends BasePage {
 					}
 
 					List<SidebarMenuItem> maintenanceMenuItems = new ArrayList<>();
-					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "Database Backup", 
+					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "数据库备份", 
 							DatabaseBackupPage.class, new PageParameters()));
-					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "Server Log", 
+					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "服务器日志", 
 							ServerLogPage.class, new PageParameters()));
-					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "Server Information", 
+					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "服务器信息", 
 							ServerInformationPage.class, new PageParameters()));
 					
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "System Maintenance", maintenanceMenuItems));
+					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "系统维护", maintenanceMenuItems));
 					
-					menuItems.add(new SidebarMenuItem.SubMenu("gear", "Administration", administrationMenuItems));
+					menuItems.add(new SidebarMenuItem.SubMenu("gear", "管理", administrationMenuItems));
 				}		
 				menus.add(new SidebarMenu(null, menuItems));
 				menus.addAll(getSidebarMenus());
@@ -295,9 +295,9 @@ public abstract class LayoutPage extends BasePage {
 			
 		});
 		
-		Plugin product = AppLoader.getProduct();
-		sidebar.add(new Label("productVersion", "Ver. " + product.getVersion()));
-		sidebar.add(new ExternalLink("docLink", OneDev.getInstance().getDocRoot() + "/"));
+		//Plugin product = AppLoader.getProduct();
+		//sidebar.add(new Label("productVersion", "Ver. " + product.getVersion()));
+		//sidebar.add(new ExternalLink("docLink", OneDev.getInstance().getDocRoot() + "/"));
 		
 		WebMarkupContainer topbar = new WebMarkupContainer("topbar");
 		add(topbar);
@@ -343,7 +343,7 @@ public abstract class LayoutPage extends BasePage {
 		if (getPage() instanceof MySshKeysPage)
 		    item.add(AttributeAppender.append("class", "active"));
 		
-		userInfo.add(item = new ViewStateAwarePageLink<Void>("myAccessToken", MyAccessTokenPage.class));
+		//userInfo.add(item = new ViewStateAwarePageLink<Void>("myAccessToken", MyAccessTokenPage.class));
 		if (getPage() instanceof MyAccessTokenPage)
 		    item.add(AttributeAppender.append("class", "active"));
 		
@@ -354,16 +354,16 @@ public abstract class LayoutPage extends BasePage {
 				@Override
 				public void onClick() {
 					SecurityUtils.getSubject().releaseRunAs();
-					Session.get().warn("Exited impersonation");
+					Session.get().warn("已退出扮演");
 					setResponsePage(ProjectListPage.class);
 				}
 				
 			}; 
-			signOutLink.add(new Label("label", "Exit Impersonation"));
+			signOutLink.add(new Label("label", "退出扮演"));
 			userInfo.add(signOutLink);
 		} else {
 			ViewStateAwarePageLink<Void> signOutLink = new ViewStateAwarePageLink<Void>("signOut", LogoutPage.class); 
-			signOutLink.add(new Label("label", "Sign Out"));
+			signOutLink.add(new Label("label", "退出登录"));
 			userInfo.add(signOutLink);
 		}
 

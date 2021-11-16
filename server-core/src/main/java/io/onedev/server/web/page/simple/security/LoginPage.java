@@ -118,7 +118,7 @@ public class LoginPage extends SimplePage {
 				password = object;
 			}
 			
-		}).setLabel(Model.of("Password")).setRequired(true));
+		}).setLabel(Model.of("密码")).setRequired(true));
 		
 		form.add(new CheckBox("rememberMe", new IModel<Boolean>() {
 
@@ -176,12 +176,12 @@ public class LoginPage extends SimplePage {
 
 	@Override
 	protected String getTitle() {
-		return "Sign In To OneDev";
+		return "登录";
 	}
 
 	@Override
 	protected String getSubTitle() {
-		return "Enter your details to login to your account";
+		return "";
 	}
 	
 }

@@ -1,32 +1,37 @@
 <wicket:panel>
 	<div class="project-list card">
 		<div class="card-body">
-			<div class="d-flex mb-4">
+<!-- 			<div class="d-flex mb-4">
 				<form wicket:id="query" class="clearable-wrapper flex-grow-1">
 					<div class="input-group">
-						<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="Query and order projects here">
+						<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="查询或排序项目">
 						<span class="input-group-append">
-							<button wicket:id="submit" type="submit" class="btn btn-outline-secondary btn-icon" title="Query"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
+							<button wicket:id="submit" type="submit" class="btn btn-outline-secondary btn-icon" title="查询"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
 						</span>
 					</div>
 				</form>
-				<a wicket:id="addProject" class="btn btn-primary btn-icon flex-shrink-0 ml-3" title="Add project"><wicket:svg href="plus" class="icon"/></a>
-			</div>
+				<a wicket:id="addProject" class="btn btn-primary btn-icon flex-shrink-0 ml-3" title="添加项目"><wicket:svg href="plus" class="icon"/></a>
+			</div> -->
 			<div class="operations mb-4">
-				<a wicket:id="showSavedQueries" class="show-saved-queries text-gray d-inline-block mb-2 mr-4">
-					<wicket:svg href="eye" class="icon"></wicket:svg> Show Saved Queries
+			
+				<a wicket:id="addProject" class="operations d-inline-block mb-2 mr-4 text-gray">
+					<wicket:svg href="plus" class="icon"></wicket:svg> 添加
 				</a>
-				<a wicket:id="saveQuery" class="save-query text-gray d-inline-block mb-2 mr-4">
-					<wicket:svg href="save" class="icon"></wicket:svg> Save Query
-				</a>
+			
+				<!-- <a wicket:id="showSavedQueries" class="show-saved-queries text-gray d-inline-block mb-2 mr-4">
+					<wicket:svg href="eye" class="icon"></wicket:svg> 显示已保存的查询
+				</a> -->
+				<!-- <a wicket:id="saveQuery" class="save-query text-gray d-inline-block mb-2 mr-4">
+					<wicket:svg href="save" class="icon"></wicket:svg> 保存查询
+				</a> -->
 				<a wicket:id="operations" class="operations d-inline-block mb-2 mr-4 text-gray">
-					<wicket:svg href="ellipsis-circle" class="icon"></wicket:svg> Operations
+					<wicket:svg href="ellipsis-circle" class="icon"></wicket:svg> 操作
 				</a>
-				<a wicket:id="importProjects" class="import-projects d-inline-block mb-2 mr-4 text-gray">
-					<wicket:svg href="import" class="icon"></wicket:svg> Import
-				</a>
+				<!-- <a wicket:id="importProjects" class="import-projects d-inline-block mb-2 mr-4 text-gray">
+					<wicket:svg href="import" class="icon"></wicket:svg> 导入
+				</a> -->
 				<a wicket:id="orderBy" class="order-by text-gray d-inline-block mb-2 mr-4">
-					<wicket:svg href="sort" class="icon"></wicket:svg> Order By
+					<wicket:svg href="sort" class="icon"></wicket:svg> 排序
 				</a>
 			</div>
 			<div wicket:id="body">

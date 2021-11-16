@@ -164,7 +164,7 @@ public class UserListPage extends AdministrationPage {
 		
 		List<IColumn<User, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Login Name")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("用户名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
@@ -188,7 +188,7 @@ public class UserListPage extends AdministrationPage {
 			}
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Full Name")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("全称")) {
 
 			@Override
 			public String getCssClass() {
@@ -203,7 +203,7 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Email")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("邮箱")) {
 
 			@Override
 			public String getCssClass() {
@@ -218,19 +218,19 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Auth Source")) {
-
-			@Override
-			public String getCssClass() {
-				return "d-none d-lg-table-cell";
-			}
-			
-			@Override
-			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
-				cellItem.add(new Label(componentId, rowModel.getObject().getAuthSource()));
-			}
-			
-		});
+//		columns.add(new AbstractColumn<User, Void>(Model.of("Auth Source")) {
+//
+//			@Override
+//			public String getCssClass() {
+//				return "d-none d-lg-table-cell";
+//			}
+//			
+//			@Override
+//			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
+//				cellItem.add(new Label(componentId, rowModel.getObject().getAuthSource()));
+//			}
+//			
+//		});
 		
 		columns.add(new AbstractColumn<User, Void>(Model.of("")) {
 
@@ -244,7 +244,7 @@ public class UserListPage extends AdministrationPage {
 					public void onClick(AjaxRequestTarget target) {
 						User user = rowModel.getObject();
 						OneDev.getInstance(UserManager.class).delete(user);
-						Session.get().success("User '" + user.getDisplayName() + "' deleted");
+						Session.get().success("用户 '" + user.getDisplayName() + "' 已删除");
 						
 						target.add(usersTable);
 					}
@@ -254,7 +254,7 @@ public class UserListPage extends AdministrationPage {
 						super.updateAjaxAttributes(attributes);
 						
 						User user = rowModel.getObject();
-						String message = "Do you really want to delete user '" + user.getDisplayName() + "'?";
+						String message = "确认删除用户 '" + user.getDisplayName() + "'?";
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
@@ -265,9 +265,9 @@ public class UserListPage extends AdministrationPage {
 							tag.put("disabled", "disabled");
 						User user = rowModel.getObject();
 						if (user.isRoot())
-							tag.put("title", "Root user can not be deleted");
+							tag.put("title", "不能删除root用户");
 						else if (user.equals(SecurityUtils.getUser()))
-							tag.put("title", "You can not delete yourself");
+							tag.put("title", "不能删除自己");
 					}
 
 					@Override

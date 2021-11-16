@@ -16,11 +16,10 @@ public class ParentBean implements Serializable {
 
 	private String parentPath;
 
-	@Editable(name="Parent Project", description="Settings and permissions of parent project will be inherited "
-			+ "by this project")
+	@Editable(name="父项目", description="此项目将继承父项目中的设置和权限 ")
 	@ProjectPath
 	@ParentChoice
-	@NameOfEmptyValue("No parent")
+	@NameOfEmptyValue("无")
 	public String getParentPath() {
 		return parentPath;
 	}

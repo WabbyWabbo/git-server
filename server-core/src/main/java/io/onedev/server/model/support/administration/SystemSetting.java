@@ -31,7 +31,7 @@ public class SystemSetting implements Serializable, Validatable {
 	
 	private boolean gravatarEnabled;
 	
-	@Editable(name="Server URL", order=90, description="Specify root URL to access this server")
+	@Editable(name="服务器地址", order=90, description="")
 	@NotEmpty
 	public String getServerUrl() {
 		return serverUrl;
@@ -41,9 +41,8 @@ public class SystemSetting implements Serializable, Validatable {
 		this.serverUrl = serverUrl;
 	}
 
-	@Editable(order=200, name="Git Command Line", description="OneDev requires git command line to manage repositories. The minimum "
-			+ "required version is 2.11.1. Also make sure that git-lfs is installed if you want to retrieve "
-			+ "LFS files in CI/CD job")
+//	@Editable(order=200, name="Git命令行", description="需要"
+//			+ "2.11.1及以上版本")
 	@Valid
 	@NotNull(message="may not be empty")
 	public GitConfig getGitConfig() {
@@ -54,7 +53,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.gitConfig = gitConfig;
 	}
 
-	@Editable(order=250, name="curl Command Line", description="OneDev configures git hooks to communicate with itself via curl")
+//	@Editable(order=250, name="curl Command Line", description="OneDev configures git hooks to communicate with itself via curl")
 	@Valid
 	@NotNull(message="may not be empty")
 	public CurlConfig getCurlConfig() {
@@ -65,7 +64,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.curlConfig = curlConfig;
 	}
 
-	@Editable(order=300, description="Whether or not to enable user gravatar (https://gravatar.com)")
+//	@Editable(order=300, description="Whether or not to enable user gravatar (https://gravatar.com)")
 	public boolean isGravatarEnabled() {
 		return gravatarEnabled;
 	}

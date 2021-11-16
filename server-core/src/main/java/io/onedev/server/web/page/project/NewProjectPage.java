@@ -75,7 +75,7 @@ public class NewProjectPage extends LayoutPage {
 					Project newProject = getProjectManager().initialize(projectPath);
 					if (!newProject.isNew()) {
 						editor.error(new Path(new PathNode.Named("name")),
-								"This name has already been used by another project");
+								"名称已被占用");
 					} else {
 						newProject.setDescription(editProject.getDescription());
 						newProject.setCodeManagementEnabled(editProject.isCodeManagementEnabled());
@@ -84,7 +84,7 @@ public class NewProjectPage extends LayoutPage {
 						
 						getProjectManager().create(newProject);
 						
-						Session.get().success("New project created");
+						Session.get().success("创建成功");
 						if (newProject.isCodeManagementEnabled())
 							setResponsePage(ProjectBlobPage.class, ProjectBlobPage.paramsOf(newProject));
 						else if (newProject.isIssueManagementEnabled())
@@ -120,9 +120,9 @@ public class NewProjectPage extends LayoutPage {
 	@Override
 	protected Component newTopbarTitle(String componentId) {
 		if (parentId != null)
-			return new Label(componentId, "Create Child Project");
+			return new Label(componentId, "创建子项目");
 		else
-			return new Label(componentId, "Create Project");
+			return new Label(componentId, "创建项目");
 	}
 	
 	public static PageParameters paramsOf(Project parent) {
