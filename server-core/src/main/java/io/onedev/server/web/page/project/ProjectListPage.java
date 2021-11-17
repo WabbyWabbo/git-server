@@ -66,36 +66,36 @@ public class ProjectListPage extends LayoutPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(savedQueries = new SavedQueriesPanel<NamedProjectQuery>("savedQueries") {
-
-			@Override
-			protected NamedQueriesBean<NamedProjectQuery> newNamedQueriesBean() {
-				return new NamedProjectQueriesBean();
-			}
-
-			@Override
-			protected Link<Void> newQueryLink(String componentId, NamedProjectQuery namedQuery) {
-				return new BookmarkablePageLink<Void>(componentId, ProjectListPage.class, 
-						ProjectListPage.paramsOf(namedQuery.getQuery(), 0, 0));
-			}
-
-			@Override
-			protected QueryPersonalization<NamedProjectQuery> getQueryPersonalization() {
-				return getLoginUser().getProjectQueryPersonalization();
-			}
-
-			@Override
-			protected ArrayList<NamedProjectQuery> getGlobalQueries() {
-				return (ArrayList<NamedProjectQuery>) getProjectSetting().getNamedQueries();
-			}
-
-			@Override
-			protected void onSaveGlobalQueries(ArrayList<NamedProjectQuery> namedQueries) {
-				getProjectSetting().setNamedQueries(namedQueries);
-				OneDev.getInstance(SettingManager.class).saveProjectSetting(getProjectSetting());
-			}
-
-		});
+//		add(savedQueries = new SavedQueriesPanel<NamedProjectQuery>("savedQueries") {
+//
+//			@Override
+//			protected NamedQueriesBean<NamedProjectQuery> newNamedQueriesBean() {
+//				return new NamedProjectQueriesBean();
+//			}
+//
+//			@Override
+//			protected Link<Void> newQueryLink(String componentId, NamedProjectQuery namedQuery) {
+//				return new BookmarkablePageLink<Void>(componentId, ProjectListPage.class, 
+//						ProjectListPage.paramsOf(namedQuery.getQuery(), 0, 0));
+//			}
+//
+//			@Override
+//			protected QueryPersonalization<NamedProjectQuery> getQueryPersonalization() {
+//				return getLoginUser().getProjectQueryPersonalization();
+//			}
+//
+//			@Override
+//			protected ArrayList<NamedProjectQuery> getGlobalQueries() {
+//				return (ArrayList<NamedProjectQuery>) getProjectSetting().getNamedQueries();
+//			}
+//
+//			@Override
+//			protected void onSaveGlobalQueries(ArrayList<NamedProjectQuery> namedQueries) {
+//				getProjectSetting().setNamedQueries(namedQueries);
+//				OneDev.getInstance(SettingManager.class).saveProjectSetting(getProjectSetting());
+//			}
+//
+//		});
 		
 		add(projectList = new ProjectListPanel("projects", new IModel<String>() {
 
