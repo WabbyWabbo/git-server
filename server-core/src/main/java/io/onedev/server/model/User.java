@@ -430,7 +430,7 @@ public class User extends AbstractEntity implements AuthenticationInfo {
     	this.name = name;
     }
     
-	@Editable(order=150)
+	@Editable(name = "密码", order=150)
 	@Password(needConfirm=true, autoComplete="new-password")
 	@NotEmpty
 	public String getPassword() {
@@ -451,7 +451,7 @@ public class User extends AbstractEntity implements AuthenticationInfo {
     	return getPassword().equals(EXTERNAL_MANAGED);
     }
     
-	@Editable(order=200)
+	@Editable(name = "全称", order=200)
 	public String getFullName() {
 		return fullName;
 	}
@@ -476,7 +476,7 @@ public class User extends AbstractEntity implements AuthenticationInfo {
 		this.accessToken = accessToken;
 	}
 
-	@Editable(order=300)
+	@Editable(name = "邮箱", order=300)
 	@NotEmpty
 	@Email
 	public String getEmail() {
