@@ -112,7 +112,7 @@ public class OneDev extends AbstractPlugin implements Serializable {
 		if (!manualConfigs.isEmpty()) {
 			String serverUrl = StringUtils.stripEnd(guessServerUrl(false).toString(StringMode.FULL), "/");
 			logger.warn("Please set up the server at " + serverUrl);
-			initStage = new InitStage("Server Setup", manualConfigs);
+			initStage = new InitStage("服务器设置", manualConfigs);
 			
 			initStage.waitForFinish();
 		}

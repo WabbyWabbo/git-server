@@ -45,7 +45,7 @@ public class CommandStep extends Step {
 			+ "job executor being used, this may be executed either inside or outside container")
 	@Interpolative
 	@Code(language=Code.SHELL, variableProvider="suggestCommandVariables")
-	@Size(min=1, message="may not be empty")
+	@Size(min=1, message="不能为空")
 	public List<String> getCommands() {
 		return commands;
 	}

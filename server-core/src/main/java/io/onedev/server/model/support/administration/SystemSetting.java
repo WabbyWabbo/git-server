@@ -44,7 +44,7 @@ public class SystemSetting implements Serializable, Validatable {
 //	@Editable(order=200, name="Git命令行", description="需要"
 //			+ "2.11.1及以上版本")
 	@Valid
-	@NotNull(message="may not be empty")
+	@NotNull(message="不能为空")
 	public GitConfig getGitConfig() {
 		return gitConfig;
 	}
@@ -55,7 +55,7 @@ public class SystemSetting implements Serializable, Validatable {
 
 //	@Editable(order=250, name="curl Command Line", description="OneDev configures git hooks to communicate with itself via curl")
 	@Valid
-	@NotNull(message="may not be empty")
+	@NotNull(message="不能为空")
 	public CurlConfig getCurlConfig() {
 		return curlConfig;
 	}

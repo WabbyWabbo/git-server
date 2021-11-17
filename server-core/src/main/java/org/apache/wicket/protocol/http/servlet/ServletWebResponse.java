@@ -295,7 +295,7 @@ public class ServletWebResponse extends WebResponse
 					
 					String content = String.format(""
 							+ "<!doctype html>"
-							+ "<html lang='en'>"
+							+ "<html lang='zh-cn'>"
 							+ "<head>"
 							+ "<script type='application/javascript'>"
 							+ "  function getKey(url) {"
