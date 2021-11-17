@@ -381,7 +381,7 @@ public abstract class CodeCommentPanel extends Panel {
 						target.add(replyContainer);
 					}
 
-				}.add(new Label("label", "Save")));
+				}.add(new Label("label", "保存")));
 				
 				fragment.add(form);
 				fragment.setOutputMarkupId(true);
@@ -670,7 +670,7 @@ public abstract class CodeCommentPanel extends Panel {
 			}
 
 		};
-		saveButton.add(new Label("label", "Save"));
+		saveButton.add(new Label("label", "保存"));
 		saveButton.add(AttributeAppender.append("class", "dirty-aware"));
 		form.add(saveButton);
 		

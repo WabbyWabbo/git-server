@@ -482,13 +482,12 @@ public class User extends AbstractEntity implements AuthenticationInfo {
 	public String getEmail() {
 		return email;
 	}
-
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	@Editable(order=350, description="Specify an email to use for web based git operations if you want to "
-			+ "keep your primary email secret")
+	@Editable(name = "Git邮箱", order=350, description="指定一个邮箱在web端进行git操作，而非使用原始邮箱")
 	public String getGitEmail() {
 		return gitEmail;
 	}
@@ -497,9 +496,10 @@ public class User extends AbstractEntity implements AuthenticationInfo {
 		this.gitEmail = gitEmail;
 	}
 
-	@Editable(order=400, description="Optionally specify one or more alternate emails with one email per line. "
-			+ "With alternate emails, git commits authored/committed via your old emails can be associated with "
-			+ "your current account")
+//	+ "Optionally specify one or more alternate emails with one email per line. "
+//	+ "With alternate emails, git commits authored/committed via your old emails can be associated with "
+//	+ "your current account"
+	@Editable(name = "候选邮箱", order=400, description="指定一个或多个邮箱（每行一个）")
 	@EmailList
 	public ArrayList<String> getAlternateEmails() {
 		return alternateEmails;
