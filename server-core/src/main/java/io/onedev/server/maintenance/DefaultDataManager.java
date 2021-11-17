@@ -161,7 +161,7 @@ public class DefaultDataManager implements DataManager, Serializable {
 				excludedProps.add("gitConfig");
 				excludedProps.add("curlConfig");
 			}
-			manualConfigs.add(new ManualConfig("Specify System Setting", null, 
+			manualConfigs.add(new ManualConfig("系统设置", null, 
 					systemSetting, excludedProps) {
 	
 				@Override
