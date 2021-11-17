@@ -308,7 +308,7 @@ public class GroupMembershipsPage extends GroupPage {
 		
 		columns.add(selectionColumn = new SelectionColumn<Membership, Void>());
 		
-		columns.add(new AbstractColumn<Membership, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Membership, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Membership>> cellItem, String componentId,
