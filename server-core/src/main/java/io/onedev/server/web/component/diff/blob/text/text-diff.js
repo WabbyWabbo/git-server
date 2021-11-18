@@ -502,7 +502,7 @@ onedev.server.textDiff = {
 
 			var tooltipId = "blame-message-" + containerId + "_" + oldLine + "_" + newLine;
 			$container.data("blameMessageCallback")(tooltipId, $(this).data("hash"));
-			var $tooltip = $("<div class='blame-message'><div class='loading'>Loading...</div></div>");
+			var $tooltip = $("<div class='blame-message'><div class='loading'>载入中...</div></div>");
 			$tooltip.attr("id", tooltipId);
 			$tooltip.data("trigger", this);
 			$tooltip.data("alignment", alignment);

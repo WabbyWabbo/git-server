@@ -1,12 +1,12 @@
 <wicket:panel>
 	<div class="saved-queries card">
 		<div class="card-header">
-			<h3 class="card-title mr-4">宸蹭繚瀛樼殑鏌ヨ</h3>
+			<h3 class="card-title mr-4">已保存的查询</h3>
 			<div class="card-toolbar">
-				<a wicket:id="edit" class="edit-saved-queries mr-2 btn btn-light btn-xs btn-icon btn-hover-primary text-muted" title="缂栬緫">
+				<a wicket:id="edit" class="edit-saved-queries mr-2 btn btn-light btn-xs btn-icon btn-hover-primary text-muted" title="编辑">
 					<wicket:svg href="edit" class="icon"></wicket:svg>
 				</a>
-				<a wicket:id="close" class="close-saved-queries btn btn-light btn-xs btn-icon btn-hover-danger text-muted" title="闅愯棌">
+				<a wicket:id="close" class="close-saved-queries btn btn-light btn-xs btn-icon btn-hover-danger text-muted" title="关闭">
 					<wicket:svg href="times" class="icon"></wicket:svg>
 				</a>
 			</div>
@@ -31,7 +31,7 @@
 	<wicket:fragment wicket:id="editSavedQueriesFrag">
 		<div class="edit-saved-queries">
 			<div class="modal-header">
-				<h5 class="modal-title">缂栬緫</h5>
+				<h5 class="modal-title">编辑</h5>
 				<button wicket:id="close" type="button" class="close"><wicket:svg href="times" class="icon"/></button>
 			</div>
 			<div wicket:id="content" class="modal-body"></div>
@@ -40,7 +40,7 @@
 	<wicket:fragment wicket:id="editPersonalAwareSavedQueriesFrag">
 		<div class="edit-saved-queries">
 			<div class="modal-header">
-				<h5 class="modal-title">鏌ヨ</h5>
+				<h5 class="modal-title">编辑</h5>
 				<button wicket:id="close" type="button" class="close"><wicket:svg href="times" class="icon"/></button>
 			</div>
 			<div class="modal-body">
@@ -55,8 +55,8 @@
 			<div wicket:id="editor"></div>
 			<div class="modal-footer">
 				<input wicket:id="save" type="submit" class="dirty-aware btn btn-primary" value="保存">
-				<a wicket:id="useDefault" class="btn btn-light-primary">浣跨敤榛樿</a>
-				<a wicket:id="cancel" class="btn btn-secondary">鍙栨秷</a>
+				<a wicket:id="useDefault" class="btn btn-light-primary">使用默认</a>
+				<a wicket:id="cancel" class="btn btn-secondary">取消</a>
 			</div>
 		</form>
 	</wicket:fragment>	

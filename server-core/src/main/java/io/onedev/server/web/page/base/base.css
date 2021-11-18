@@ -272,7 +272,7 @@ img.avatar {
 }
 
 /* wicket default ajax lazyload style */ 
-.floating>.content>div>img[alt="Loading..."] {
+.floating>.content>div>img[alt="载入中..."] {
 	margin: 8px;
 }
 

@@ -153,7 +153,7 @@ onedev.server = {
 			var selector = "form.leave-confirm.dirty";
 			var $dirtyForms = $container.find(selector).addBack(selector);
 			if ($dirtyForms.length != 0) {
-				if (confirm("There are unsaved changes, do you want to discard and continue?")) {
+				if (confirm("尚未保存，确定不保存并继续吗？")) {
 					onedev.server.form.clearAutosavings($dirtyForms);
 					return true;
 				} else {

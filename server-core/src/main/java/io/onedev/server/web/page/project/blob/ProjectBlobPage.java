@@ -218,7 +218,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 		
 		if (state.mode == Mode.ADD || state.mode == Mode.EDIT || state.mode == Mode.DELETE) {
 			if (!isOnBranch()) 
-				throw new IllegalArgumentException("Files can only be edited on branch");
+				throw new IllegalArgumentException("只能在分支中编辑文件");
 			
 			String path = state.blobIdent.path;
 			if (path != null && state.blobIdent.isTree())
@@ -282,7 +282,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 			
 		});
 
-		newBuildSupportNote(null);
+		/* newBuildSupportNote(null); */
 		newBlobContent(null);
 
 		add(searchResult = new WebMarkupContainer("searchResult"));
@@ -421,7 +421,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 
 					@Override
 					public String getLabel() {
-						return "Create New File";
+						return "创建文件";
 					}
 
 					@Override
@@ -443,7 +443,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 
 					@Override
 					public String getLabel() {
-						return "Upload Files";
+						return "上传文件";
 					}
 
 					@Override
@@ -492,7 +492,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 					tag.append("class", "disabled", " ");
 					tag.put("title", "Build required for this change. Submit pull request instead");
 				} else {
-					tag.put("title", "Add on branch " + state.blobIdent.revision);
+					tag.put("title", "在分支 " + state.blobIdent.revision + " 上添加");
 				}
 			}
 
@@ -527,7 +527,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 
 					@Override
 					public String getLabel() {
-						return "Quick Search";
+						return "快速搜索";
 					}
 
 					@Override
@@ -558,7 +558,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 
 					@Override
 					public String getLabel() {
-						return "Advanced Search";
+						return "高级搜索";
 					}
 
 					@Override
@@ -831,65 +831,44 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 		}
 	}
 	
-	private void newBuildSupportNote(@Nullable AjaxRequestTarget target) {
-		Component buildSupportNote = new WebMarkupContainer("buildSupportNote") {
-
-			@Override
-			protected void onInitialize() {
-				super.onInitialize();
-				
-				String branch = state.blobIdent.revision;
-				if (branch == null)
-					branch = "master";
-				if (SecurityUtils.canModify(getProject(), branch, BuildSpec.BLOB_PATH)) {
-					add(new ViewStateAwareAjaxLink<Void>("addFile") {
-	
-						@Override
-						public void onClick(AjaxRequestTarget target) {
-							onModeChange(target, Mode.ADD, BuildSpec.BLOB_PATH);
-						}
-
-						@Override
-						public IModel<?> getBody() {
-							return Model.of("adding " + BuildSpec.BLOB_PATH);
-						}
-						
-					});
-				} else {
-					add(new Label("addFile", "adding " + BuildSpec.BLOB_PATH) {
-
-						@Override
-						protected void onComponentTag(ComponentTag tag) {
-							super.onComponentTag(tag);
-							tag.setName("span");
-						}
-						
-					});
-				}
-				setOutputMarkupPlaceholderTag(true);
-			}
-
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				if (resolvedRevision != null && isOnBranch() && state.blobIdent.path == null && state.mode == Mode.VIEW) {
-					BlobIdent oldBlobIdent = new BlobIdent(resolvedRevision.name(), ".onedev-buildspec", FileMode.TYPE_FILE);
-					BlobIdent blobIdent = new BlobIdent(resolvedRevision.name(), BuildSpec.BLOB_PATH, FileMode.TYPE_FILE);
-					setVisible(getProject().getBlob(blobIdent, false) == null && getProject().getBlob(oldBlobIdent, false) == null);
-				} else {
-					setVisible(false);
-				}
-			}
-			
-		};
-		
-		if (target != null) {
-			replace(buildSupportNote);
-			target.add(buildSupportNote);
-		} else {
-			add(buildSupportNote);
-		}
-	}
+	/*
+	 * private void newBuildSupportNote(@Nullable AjaxRequestTarget target) {
+	 * Component buildSupportNote = new WebMarkupContainer("buildSupportNote") {
+	 * 
+	 * @Override protected void onInitialize() { super.onInitialize();
+	 * 
+	 * String branch = state.blobIdent.revision; if (branch == null) branch =
+	 * "master"; if (SecurityUtils.canModify(getProject(), branch,
+	 * BuildSpec.BLOB_PATH)) { add(new ViewStateAwareAjaxLink<Void>("addFile") {
+	 * 
+	 * @Override public void onClick(AjaxRequestTarget target) {
+	 * onModeChange(target, Mode.ADD, BuildSpec.BLOB_PATH); }
+	 * 
+	 * @Override public IModel<?> getBody() { return Model.of("adding " +
+	 * BuildSpec.BLOB_PATH); }
+	 * 
+	 * }); } else { add(new Label("addFile", "adding " + BuildSpec.BLOB_PATH) {
+	 * 
+	 * @Override protected void onComponentTag(ComponentTag tag) {
+	 * super.onComponentTag(tag); tag.setName("span"); }
+	 * 
+	 * }); } setOutputMarkupPlaceholderTag(true); }
+	 * 
+	 * @Override protected void onConfigure() { super.onConfigure(); if
+	 * (resolvedRevision != null && isOnBranch() && state.blobIdent.path == null &&
+	 * state.mode == Mode.VIEW) { BlobIdent oldBlobIdent = new
+	 * BlobIdent(resolvedRevision.name(), ".onedev-buildspec", FileMode.TYPE_FILE);
+	 * BlobIdent blobIdent = new BlobIdent(resolvedRevision.name(),
+	 * BuildSpec.BLOB_PATH, FileMode.TYPE_FILE);
+	 * setVisible(getProject().getBlob(blobIdent, false) == null &&
+	 * getProject().getBlob(oldBlobIdent, false) == null); } else {
+	 * setVisible(false); } }
+	 * 
+	 * };
+	 * 
+	 * if (target != null) { replace(buildSupportNote);
+	 * target.add(buildSupportNote); } else { add(buildSupportNote); } }
+	 */
 	
 	private void newRevisionPicker(@Nullable AjaxRequestTarget target) {
 		String revision = state.blobIdent.revision;
@@ -973,7 +952,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 		target.add(revisionIndexing);
 		newBlobNavigator(target);
 		newBlobOperations(target);
-		newBuildSupportNote(target);
+//		newBuildSupportNote(target);
 		newBlobContent(target);
 	}
 	
@@ -1084,7 +1063,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 			state = popState;
 			newBlobNavigator(target);
 			newBlobOperations(target);
-			newBuildSupportNote(target);
+//			newBuildSupportNote(target);
 			newBlobContent(target);
 		}
 	}
@@ -1164,7 +1143,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 			state.commentId = null;
 			newBlobNavigator(target);
 			newBlobOperations(target);
-			newBuildSupportNote(target);
+//			newBuildSupportNote(target);
 			newBlobContent(target);
 			resizeWindow(target);
 			OneDev.getInstance(WebSocketManager.class).observe(this);
@@ -1176,14 +1155,14 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 			} else {
 				state.mode = Mode.VIEW;
 				newBlobOperations(target);
-				newBuildSupportNote(target);
+//				newBuildSupportNote(target);
 				newBlobContent(target);
 				resizeWindow(target);
 			}
 		} else if (prevPosition != null) {
 			state.mode = Mode.VIEW;
 			newBlobOperations(target);
-			newBuildSupportNote(target);
+//			newBuildSupportNote(target);
 			newBlobContent(target);
 			resizeWindow(target);
 		}
@@ -1319,7 +1298,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 				newBlobOperations(target);
 			}
 		}			
-		newBuildSupportNote(target);
+//		newBuildSupportNote(target);
 		newBlobContent(target);
 		resizeWindow(target);
 	}
@@ -1486,10 +1465,10 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext,
 	@Override
 	public String getAutosaveKey() {
 		if (state.mode == Mode.ADD) {
-			return String.format("autosave:addBlob:%d:%s:%s", 
+			return String.format("自动保存:添加了:%d:%s:%s", 
 					getProject().getId(), state.blobIdent.revision, getNewPath());
 		} else if (state.mode == Mode.EDIT) {
-			return String.format("autosave:editBlob:%d:%s:%s:%s", 
+			return String.format("自动保存:编辑了:%d:%s:%s:%s", 
 					getProject().getId(), state.blobIdent.revision, 
 					state.blobIdent.path, getProject().getBlob(state.blobIdent, true).getBlobId());
 		} else {

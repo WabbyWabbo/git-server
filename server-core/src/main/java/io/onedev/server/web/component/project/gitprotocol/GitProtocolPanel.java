@@ -50,9 +50,9 @@ public abstract class GitProtocolPanel extends Panel {
 			@Override
 			protected String load() {
 				if (useSsh)
-					return "Showing SSH URL";
+					return "SSH URL";
 				else
-					return "Showing HTTP(S) URL";
+					return "HTTP(S) URL";
 			}
 			
 		}));
@@ -70,9 +70,9 @@ public abstract class GitProtocolPanel extends Panel {
 			@Override
 			protected String load() {
 				if (useSsh)
-					return "Switch to HTTP(S)";
+					return "切换到HTTP(S)";
 				else
-					return "Switch to SSH";
+					return "切换到SSH";
 			}
 			
 		}));
@@ -101,7 +101,7 @@ public abstract class GitProtocolPanel extends Panel {
 		add(newContent("content"));
 		
 		SshSetting sshSetting = OneDev.getInstance(SettingManager.class).getSshSetting();
-		add(new Label("fingerPrint", "Server fingerprint: " + sshSetting.getFingerPrint()) {
+		add(new Label("fingerPrint", "服务器标识: " + sshSetting.getFingerPrint()) {
 
 			@Override
 			protected void onConfigure() {

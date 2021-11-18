@@ -60,7 +60,7 @@ onedev.server.markdown = {
 			$rendered.data("caretOffset", caretOffset);
 			
 			onedev.server.perfectScrollbar.empty($rendered);
-			$rendered.html("<div class='message'>Loading...</div>");
+			$rendered.html("<div class='message'>载入中...</div>");
 			
 			$editLink.removeClass("active");
 			$previewLink.addClass("active");
@@ -72,7 +72,7 @@ onedev.server.markdown = {
 			
 			$input.focus();
 			
-			$rendered.html("<div class='message'>Loading...</div>");
+			$rendered.html("<div class='message'>载入中...</div>");
 			
 			$editLink.removeClass("active");
 			$previewLink.removeClass("active");
@@ -688,7 +688,7 @@ onedev.server.markdown = {
 		$actionMenu.find(".do-emoji").click(function() {
 			if (!$emojis.hasClass("loaded") && !$emojis.hasClass("loading")) {
 				$emojis.addClass("loading");
-				$emojis.html("Loading emojis...");
+				$emojis.html("载入表情中...");
 				callback("loadEmojis");
 			}
 			$emojis.toggle();
@@ -903,7 +903,7 @@ onedev.server.markdown = {
 				referenceType = "commit";
 			}
 			if (referenceType) {
-				var $tooltip = $("<div id='reference-tooltip'>Loading...</div>");
+				var $tooltip = $("<div id='reference-tooltip'>载入中...</div>");
 				$tooltip.data("trigger", this);
 				$tooltip.data("alignment", alignment);
 				$("body").append($tooltip);

@@ -57,7 +57,7 @@ public class NoCommitsPanel extends Panel {
 
 						@Override
 						public String getLabel() {
-							return "Create New File";
+							return "创建文件";
 						}
 
 						@Override
@@ -79,7 +79,7 @@ public class NoCommitsPanel extends Panel {
 
 						@Override
 						public String getLabel() {
-							return "Upload Files";
+							return "上传文件";
 						}
 
 						@Override
@@ -119,14 +119,14 @@ public class NoCommitsPanel extends Panel {
 				
 			});		
 			
-			add(new AjaxLink<Void>("setupBuildSpec") {
-
-				@Override
-				public void onClick(AjaxRequestTarget target) {
-					context.onModeChange(target, Mode.ADD, BuildSpec.BLOB_PATH);
-				}
-				
-			});
+			/*
+			 * add(new AjaxLink<Void>("setupBuildSpec") {
+			 * 
+			 * @Override public void onClick(AjaxRequestTarget target) {
+			 * context.onModeChange(target, Mode.ADD, BuildSpec.BLOB_PATH); }
+			 * 
+			 * });
+			 */
 			
 			add(new DropdownLink("pushInstructions") {
 
@@ -173,15 +173,14 @@ public class NoCommitsPanel extends Panel {
 				}
 				
 			});
-			add(new WebMarkupContainer("setupBuildSpec") {
-
-				@Override
-				protected void onComponentTag(ComponentTag tag) {
-					super.onComponentTag(tag);
-					tag.setName("span");
-				}
-				
-			});
+			/*
+			 * add(new WebMarkupContainer("setupBuildSpec") {
+			 * 
+			 * @Override protected void onComponentTag(ComponentTag tag) {
+			 * super.onComponentTag(tag); tag.setName("span"); }
+			 * 
+			 * });
+			 */
 			add(new WebMarkupContainer("pushInstructions") {
 				
 				@Override

@@ -133,7 +133,7 @@ public class BlobNavigator extends Panel {
 					else
 						link.add(new Label("label", blobIdent.path));
 				} else {
-					link.add(new Label("label", "ROOT"));
+					link.add(new Label("label", "根目录"));
 				}
 				
 				item.add(link);

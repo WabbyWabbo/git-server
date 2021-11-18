@@ -172,25 +172,23 @@ public class MarkdownEditor extends FormComponentPanel<String> {
 		
 		container.add(AttributeAppender.append("class", compactMode?"compact-mode":"normal-mode"));
 		
-		container.add(new DropdownLink("doReference") {
-
-
-			@Override
-			protected Component newContent(String id, FloatingPanel dropdown) {
-				return new Fragment(id, "referenceMenuFrag", MarkdownEditor.this) {
-
-					@Override
-					public void renderHead(IHeaderResponse response) {
-						super.renderHead(response);
-						String script = String.format("onedev.server.markdown.setupActionMenu($('#%s'), $('#%s'));", 
-								container.getMarkupId(), getMarkupId());
-						response.render(OnDomReadyHeaderItem.forScript(script));
-					}
-					
-				}.setOutputMarkupId(true);
-			}
-			
-		}.setVisible(getReferenceSupport() != null));
+		/*
+		 * container.add(new DropdownLink("doReference") {
+		 * 
+		 * 
+		 * @Override protected Component newContent(String id, FloatingPanel dropdown) {
+		 * return new Fragment(id, "referenceMenuFrag", MarkdownEditor.this) {
+		 * 
+		 * @Override public void renderHead(IHeaderResponse response) {
+		 * super.renderHead(response); String script =
+		 * String.format("onedev.server.markdown.setupActionMenu($('#%s'), $('#%s'));",
+		 * container.getMarkupId(), getMarkupId());
+		 * response.render(OnDomReadyHeaderItem.forScript(script)); }
+		 * 
+		 * }.setOutputMarkupId(true); }
+		 * 
+		 * }.setVisible(getReferenceSupport() != null));
+		 */
 		
 		container.add(new DropdownLink("actionMenuTrigger") {
 
@@ -204,10 +202,11 @@ public class MarkdownEditor extends FormComponentPanel<String> {
 						super.onInitialize();
 						add(new WebMarkupContainer("doMention").setVisible(getUserMentionSupport() != null));
 						
-						if (getReferenceSupport() != null) 
-							add(new Fragment("doReference", "referenceMenuFrag", MarkdownEditor.this));
-						else 
-							add(new WebMarkupContainer("doReference").setVisible(false));
+						/*
+						 * if (getReferenceSupport() != null) add(new Fragment("doReference",
+						 * "referenceMenuFrag", MarkdownEditor.this)); else add(new
+						 * WebMarkupContainer("doReference").setVisible(false));
+						 */
 					}
 
 					@Override

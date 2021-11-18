@@ -8,7 +8,7 @@ onedev.server.dropzone = {
 			acceptedFiles: acceptedFiles,
 			maxFiles: maxFiles,
 			maxFilesize: maxFilesize, 
-			dictDefaultMessage: "Drop files here or click to upload",
+			dictDefaultMessage: "拖拽文件至此或点击此处上传",
 			success: function() {
 				onedev.server.form.markDirty($(input).closest("form"));
 			},
