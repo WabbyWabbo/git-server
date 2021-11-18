@@ -56,7 +56,7 @@ public class SshKey extends AbstractEntity implements Validatable {
     @JoinColumn(nullable=false)
     private User owner;
 
-    @Editable(name="OpenSSH Public Key", description="Provide a OpenSSH public key. Normally begins with 'ssh-rsa'")
+    @Editable(name="SSH公钥", description="添加SSH公钥。通常以'ssh-rsa'开头")
     @NotEmpty
     @Multiline
     @OmitName
