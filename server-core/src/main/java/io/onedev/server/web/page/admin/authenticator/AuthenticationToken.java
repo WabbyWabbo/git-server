@@ -16,7 +16,7 @@ public class AuthenticationToken implements Serializable {
 	
 	private String password;
 
-	@Editable(order=100, description="Specify user name to authenticate with")
+	@Editable(name = "用户名", order=100, description="指定要授权的用户")
 	@NotEmpty
 	public String getUserName() {
 		return userName;

@@ -174,7 +174,7 @@ public class GeneralProjectSettingPage extends ProjectSettingPage {
 	
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "<span class='text-truncate'>General Setting</span>").setEscapeModelStrings(false);
+		return new Label(componentId, "<span class='text-truncate'>一般设置</span>").setEscapeModelStrings(false);
 	}
 
 }

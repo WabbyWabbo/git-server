@@ -19,7 +19,7 @@ public class AuthorizationBean implements Serializable {
 	
 	private String roleName;
 
-	@Editable(order=100, name="User")
+	@Editable(order=100, name="用户")
 	@UserChoice
 	@NotEmpty
 	public String getUserName() {
@@ -30,9 +30,9 @@ public class AuthorizationBean implements Serializable {
 		this.userName = userName;
 	}
 
-	@Editable(order=200, name="Role")
+	@Editable(order=200, name="角色")
 	@RoleChoice
-	@Size(min=1, message="At least one role needs to be specified")
+	@Size(min=1, message="至少指定一个角色")
 	public String getRoleName() {
 		return roleName;
 	}

@@ -299,7 +299,7 @@ public class DefaultDataManager implements DataManager, Serializable {
 		
 		if (roleManager.get(Role.OWNER_ID) == null) {
 			Role owner = new Role();
-			owner.setName("Project Owner");
+			owner.setName("项目拥有者");
 			owner.setId(Role.OWNER_ID);
 			owner.setManageProject(true);
 			roleManager.replicate(owner);

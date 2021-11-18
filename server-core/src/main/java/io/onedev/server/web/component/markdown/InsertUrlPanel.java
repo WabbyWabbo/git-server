@@ -124,11 +124,11 @@ abstract class InsertUrlPanel extends Panel {
 		Form<?> form = new Form<Void>("form");
 		form.add(new FencedFeedbackPanel("feedback", form));
 		
-		form.add(new Label("urlLabel", isImage?"Image URL":"Link URL"));
-		form.add(new Label("urlHelp", isImage?"Absolute or relative url of the image":"Absolute or relative url of the link"));
+		form.add(new Label("urlLabel", isImage?"图像 URL":"链接 URL"));
+		form.add(new Label("urlHelp", isImage?"图像的绝对或相对路径":"链接的绝对或相对路径"));
 		form.add(new TextField<String>("url", new PropertyModel<String>(this, "url")));
 		
-		form.add(new Label("textLabel", isImage?"Image Text": "Link Text"));
+		form.add(new Label("textLabel", isImage?"图像内容": "链接内容"));
 		form.add(new TextField<String>("text", new PropertyModel<String>(this, "text")));
 		
 		form.add(new AjaxButton("insert", form) {
@@ -138,9 +138,9 @@ abstract class InsertUrlPanel extends Panel {
 				super.onSubmit(target, form);
 				if (StringUtils.isBlank(url)) {
 					if (isImage)
-						error("Image URL should be specified");
+						error("必须指定图像 URL");
 					else
-						error("Link URL should be specified");
+						error("必须指定链接 URL");
 					target.add(fragment);
 				} else {
 					if (text == null)
@@ -568,7 +568,7 @@ abstract class InsertUrlPanel extends Panel {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-		add(new Label("title", isImage?"Insert Image":"Insert Link"));
+		add(new Label("title", isImage?"插入图像":"插入链接"));
 		
 		if (markdownEditor.getBlobRenderContext() == null && markdownEditor.getAttachmentSupport() == null) {
 			add(newInputUrlPanel());
