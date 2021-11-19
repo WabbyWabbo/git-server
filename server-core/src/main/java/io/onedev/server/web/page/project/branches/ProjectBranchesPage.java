@@ -442,17 +442,17 @@ public class ProjectBranchesPage extends ProjectPage {
 						User user = Preconditions.checkNotNull(getLoginUser());
 						if (getProject().getObjectId(GitUtils.branch2ref(branchName), false) != null) {
 							editor.error(new Path(new PathNode.Named("name")), 
-									"Branch '" + branchName + "' already exists, please choose a different name");
+									"分支 '" + branchName + "' 已存在, 请设置其他名称");
 							target.add(form);
 						} else if (getProject().getHierarchyBranchProtection(branchName, user).isPreventCreation()) {
-							editor.error(new Path(new PathNode.Named("name")), "Unable to create protected branch");
+							editor.error(new Path(new PathNode.Named("name")), "无法创建受保护的分支");
 							target.add(form);
 						} else {
 							getProject().createBranch(branchName, helperBean.getRevision());
 							modal.close();
 							target.add(branchesTable);
 							
-							getSession().success("Branch '" + branchName + "' created");
+							getSession().success("分支 " + branchName + " 已创建");
 						}
 					}
 
@@ -587,9 +587,9 @@ public class ProjectBranchesPage extends ProjectPage {
 						super.disableLink(tag);
 						tag.append("class", "disabled", " ");
 						if (getProject().getDefaultBranch().equals(branch)) {
-							tag.put("title", "Can not delete default branch");
+							tag.put("title", "不能删除默认分支");
 						} else {
-							tag.put("title", "Deletion not allowed due to branch protection rule");
+							tag.put("title", "由于分支保护规则,不允许删除");
 						}
 					}
 
@@ -608,14 +608,14 @@ public class ProjectBranchesPage extends ProjectPage {
 							bodyFrag.add(new Label("branch", branch));
 							fragment.add(bodyFrag);
 						} else {
-							fragment.add(new Label("body", "You selected to delete branch " + branch));
+							fragment.add(new Label("body", "确定删除分支 " + branch + " 吗?"));
 						}
 						fragment.add(new AjaxLink<Void>("delete") {
 
 							@Override
 							public void onClick(AjaxRequestTarget target) {
 								OneDev.getInstance(ProjectManager.class).deleteBranch(getProject(), branch);
-								getSession().success("Branch '" + branch + "' deleted");
+								getSession().success("分支 '" + branch + "' 已删除");
 								if (branch.equals(baseBranch)) {
 									baseBranch = getProject().getDefaultBranch();
 									target.add(baseChoice);
@@ -783,7 +783,7 @@ public class ProjectBranchesPage extends ProjectPage {
 			protected void onInitialize() {
 				super.onInitialize();
 				add(new Label("count", count));
-				add(new Label("label", ahead?"ahead":"behind"));
+				add(new Label("label", ahead?"个领先":"个落后"));
 			}
 
 			@Override
@@ -791,9 +791,9 @@ public class ProjectBranchesPage extends ProjectPage {
 				super.onComponentTag(tag);
 				
 				if (ahead)
-					tag.put("title", "" + count + " commits ahead of base branch");
+					tag.put("title", "" + count + " 个提交领先于 base 分支");
 				else
-					tag.put("title", "" + count + " commits behind of base branch");
+					tag.put("title", "" + count + " 个提交落后于 base 分支");
 					
 				if (count == 0)
 					tag.setName("span");
@@ -880,12 +880,12 @@ public class ProjectBranchesPage extends ProjectPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Branches");
+		return new Label(componentId, "分支");
 	}
 
 	@Override
 	protected String getPageTitle() {
-		return "Branches - " + getProject().getPath();
+		return "分支 - " + getProject().getPath();
 	}
 	
 }

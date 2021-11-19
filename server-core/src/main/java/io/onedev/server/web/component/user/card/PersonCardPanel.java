@@ -49,14 +49,14 @@ public class PersonCardPanel extends Panel {
 		
 		if (StringUtils.isBlank(personIdent.getEmailAddress())) {
 			if (personIdent.getName().equals(User.SYSTEM_NAME))
-				builder.append("<i>System Account</i>");
+				builder.append("<i>系统账户</i>");
 			else
-				builder.append("<i>No OneDev Account</i>");
+				builder.append("<i>非系统账户</i>");
 		} else {
 			if (user != null) 
 				builder.append("<i>@" + HtmlEscape.escapeHtml5(user.getName()) + "</i>"); 
 			else 
-				builder.append("<i>No OneDev Account</i>");
+				builder.append("<i>非系统账户</i>");
 		}
 		container.add(new Label("info", builder.toString()).setEscapeModelStrings(false));
 	}

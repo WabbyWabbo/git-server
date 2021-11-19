@@ -16,7 +16,7 @@ public class BranchBeanWithRevision extends BranchBean {
 
 	@Editable(order=1000)
 	@RevisionPick
-	@NotEmpty(message="Please choose revision to create branch from")
+	@NotEmpty(message="请选择分支进行修订")
 	@OmitName
 	public String getRevision() {
 		return revision;

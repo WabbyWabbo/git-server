@@ -59,7 +59,7 @@ public class ProjectContribsPage extends ProjectStatsPage {
 				String emailAddress = RequestCycle.get().getRequest().getPostParameters()
 						.getParameterValue("emailAddress").toString();
 				PersonIdent author = new PersonIdent(name, emailAddress);
-				Component userCard = new PersonCardPanel(USER_CARD_ID, author, "Author");
+				Component userCard = new PersonCardPanel(USER_CARD_ID, author, "作者");
 				userCard.setOutputMarkupId(true);
 				replace(userCard);
 				target.add(userCard);

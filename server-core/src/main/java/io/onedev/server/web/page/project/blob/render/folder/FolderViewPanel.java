@@ -299,7 +299,7 @@ public class FolderViewPanel extends Panel {
 				String emailAddress = RequestCycle.get().getRequest().getPostParameters()
 						.getParameterValue("emailAddress").toString();
 				PersonIdent personIdent = new PersonIdent(name, emailAddress);
-				Component userCard = new PersonCardPanel(USER_CARD_ID, personIdent, "Author");
+				Component userCard = new PersonCardPanel(USER_CARD_ID, personIdent, "作者");
 				userCard.setOutputMarkupId(true);
 				replace(userCard);
 				target.add(userCard);

@@ -154,15 +154,15 @@ public abstract class RevisionSelector extends Panel {
 			protected String load() {
 				if (branchesActive) {
 					if (canCreateBranch) {
-						return "Find or create branch";
+						return "搜索或创建分支";
 					} else {
-						return "Find branch";
+						return "搜索分支";
 					}
 				} else {
 					if (canCreateTag) {
-						return "Find or create tag";
+						return "搜索或创建标签";
 					} else {
-						return "Find tag";
+						return "搜索标签";
 					}
 				}
 			}
@@ -225,7 +225,7 @@ public abstract class RevisionSelector extends Panel {
 		
 		List<Tab> tabs = new ArrayList<>();
 		AjaxActionTab branchesTab;
-		tabs.add(branchesTab = new AjaxActionTab(Model.of("branches")) {
+		tabs.add(branchesTab = new AjaxActionTab(Model.of("分支")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -235,7 +235,7 @@ public abstract class RevisionSelector extends Panel {
 			
 		});
 		AjaxActionTab tagsTab;
-		tabs.add(tagsTab = new AjaxActionTab(Model.of("tags")) {
+		tabs.add(tagsTab = new AjaxActionTab(Model.of("标签")) {
 
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -383,9 +383,9 @@ public abstract class RevisionSelector extends Panel {
 		} else if (itemValue.startsWith(ADD_FLAG)) {
 			String label;
 			if (branchesActive)
-				label = "Create branch <b>" + HtmlEscape.escapeHtml5(ref) + "</b>";
+				label = "创建分支 <b>" + HtmlEscape.escapeHtml5(ref) + "</b>";
 			else
-				label = "Create tag <b>" + HtmlEscape.escapeHtml5(ref) + "</b>";
+				label = "创建标签 <b>" + HtmlEscape.escapeHtml5(ref) + "</b>";
 			label += " from " + HtmlEscape.escapeHtml5(revision);
 			link.add(new Label("label", label).setEscapeModelStrings(false));
 			icon = "plus";
@@ -420,7 +420,7 @@ public abstract class RevisionSelector extends Panel {
 				item.add(AttributeAppender.append("class", "active"));
 			itemsView.add(item);
 		}
-		itemsContainer.add(new Label("noItems", branchesActive? "No branches found": "No tags found") {
+		itemsContainer.add(new Label("noItems", branchesActive? "未找到分支": "未找到标签") {
 
 			@Override
 			protected void onConfigure() {
@@ -463,7 +463,7 @@ public abstract class RevisionSelector extends Panel {
 			if (projectModel.getObject().getRevCommit(revision, false) != null) {
 				onSelect(target, revision);
 			} else {
-				feedbackMessage = "Can not find commit of revision " + revision + "";
+				feedbackMessage = "无法找到修订版本 " + revision + " 的提交";
 				target.add(feedback);
 			}
 		} catch (Exception e) {
