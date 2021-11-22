@@ -68,36 +68,30 @@ public class ProjectCommitsPage extends ProjectPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(savedQueries = new SavedQueriesPanel<NamedCommitQuery>("savedQueries") {
-
-			@Override
-			protected NamedQueriesBean<NamedCommitQuery> newNamedQueriesBean() {
-				return new NamedCommitQueriesBean();
-			}
-
-			@Override
-			protected Link<Void> newQueryLink(String componentId, NamedCommitQuery namedQuery) {
-				return new BookmarkablePageLink<Void>(componentId, ProjectCommitsPage.class, 
-						ProjectCommitsPage.paramsOf(getProject(), namedQuery.getQuery(), compare));
-			}
-
-			@Override
-			protected QueryPersonalization<NamedCommitQuery> getQueryPersonalization() {
-				return getProject().getCommitQueryPersonalizationOfCurrentUser();
-			}
-
-			@Override
-			protected ArrayList<NamedCommitQuery> getGlobalQueries() {
-				return getProject().getNamedCommitQueries();
-			}
-
-			@Override
-			protected void onSaveGlobalQueries(ArrayList<NamedCommitQuery> projectQueries) {
-				getProject().setNamedCommitQueries(projectQueries);
-				OneDev.getInstance(ProjectManager.class).save(getProject());
-			}
-
-		});
+		/*
+		 * add(savedQueries = new SavedQueriesPanel<NamedCommitQuery>("savedQueries") {
+		 * 
+		 * @Override protected NamedQueriesBean<NamedCommitQuery> newNamedQueriesBean()
+		 * { return new NamedCommitQueriesBean(); }
+		 * 
+		 * @Override protected Link<Void> newQueryLink(String componentId,
+		 * NamedCommitQuery namedQuery) { return new
+		 * BookmarkablePageLink<Void>(componentId, ProjectCommitsPage.class,
+		 * ProjectCommitsPage.paramsOf(getProject(), namedQuery.getQuery(), compare)); }
+		 * 
+		 * @Override protected QueryPersonalization<NamedCommitQuery>
+		 * getQueryPersonalization() { return
+		 * getProject().getCommitQueryPersonalizationOfCurrentUser(); }
+		 * 
+		 * @Override protected ArrayList<NamedCommitQuery> getGlobalQueries() { return
+		 * getProject().getNamedCommitQueries(); }
+		 * 
+		 * @Override protected void onSaveGlobalQueries(ArrayList<NamedCommitQuery>
+		 * projectQueries) { getProject().setNamedCommitQueries(projectQueries);
+		 * OneDev.getInstance(ProjectManager.class).save(getProject()); }
+		 * 
+		 * });
+		 */
 		
 		add(commitList = new CommitListPanel("commits", new IModel<String>() {
 

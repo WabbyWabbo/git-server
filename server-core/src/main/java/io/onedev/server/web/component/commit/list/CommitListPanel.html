@@ -1,7 +1,7 @@
 <wicket:panel>
 	<div class="commit-list card">
 		<div class="card-body">
-			<form wicket:id="query" class="clearable-wrapper mb-4">
+			<!-- <form wicket:id="query" class="clearable-wrapper mb-4">
 				<div class="input-group">
 					<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="Query commits here">
 					<span class="input-group-append">
@@ -16,7 +16,7 @@
 				<a wicket:id="saveQuery" class="save-query text-gray d-inline-block mb-2 mr-4">
 					<wicket:svg href="save" class="icon"></wicket:svg> Save Query
 				</a>
-			</div>
+			</div> -->
 	        <div wicket:id="body" class="body resize-aware">
 	            <div wicket:id="feedback"></div>
 	            <ul class="list list-unstyled">
@@ -25,8 +25,8 @@
 	            <div wicket:id="noCommits" class="no-commits"></div>
 	        </div>
 	        <div wicket:id="foot" class="foot text-center">
-	            <a wicket:id="more" class="btn btn-primary">More commits</a>
-	            <div wicket:id="tooMany" class="alert alert-light-warning">Too many commits to load</div>
+	            <a wicket:id="more" class="btn btn-primary">显示更多提交</a>
+	            <div wicket:id="tooMany" class="alert alert-light-warning">载入提交过多！</div>
 	        </div>
 		</div>
 	</div>
@@ -52,9 +52,9 @@
 	            <a wicket:id="copyHash" class="btn btn-outline-secondary btn-icon"><wicket:svg href="copy" class="icon"></wicket:svg></a>
 	        </span>
 	        <span class="btn-group browse">
-	            <a wicket:id="browseCode" title="Browse code" class="btn btn-outline-secondary btn-icon"><wicket:svg href="files" class="icon"></wicket:svg></a>
+	            <a wicket:id="browseCode" title="浏览代码" class="btn btn-outline-secondary btn-icon"><wicket:svg href="files" class="icon"></wicket:svg></a>
 	            <wicket:enclosure>
-	            <a wicket:id="compare" class="compare btn btn-outline-secondary btn-icon" title="Compare with base revision"><wicket:svg href="diff" class="icon"></wicket:svg></a>
+	            <a wicket:id="compare" class="compare btn btn-outline-secondary btn-icon" title="与base比较"><wicket:svg href="diff" class="icon"></wicket:svg></a>
 	            </wicket:enclosure>
 	        </span>
 		</div>

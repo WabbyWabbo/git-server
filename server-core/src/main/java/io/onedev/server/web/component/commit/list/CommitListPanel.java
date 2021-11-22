@@ -282,100 +282,72 @@ public abstract class CommitListPanel extends Panel {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(new AjaxLink<Void>("showSavedQueries") {
-
-			@Override
-			public void onEvent(IEvent<?> event) {
-				super.onEvent(event);
-				if (event.getPayload() instanceof SavedQueriesClosed) {
-					((SavedQueriesClosed) event.getPayload()).getHandler().add(this);
-				}
-			}
-			
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setVisible(getQuerySaveSupport() != null && !getQuerySaveSupport().isSavedQueriesVisible());
-			}
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				send(getPage(), Broadcast.BREADTH, new SavedQueriesOpened(target));
-				target.add(this);
-			}
-			
-		}.setOutputMarkupPlaceholderTag(true));
-		
-		add(saveQueryLink = new AjaxLink<Void>("saveQuery") {
-
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setEnabled(querySubmitted && queryModel.getObject() != null);
-				setVisible(SecurityUtils.getUser() != null && getQuerySaveSupport() != null);
-			}
-
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				configure();
-				if (!isEnabled()) 
-					tag.append("class", "disabled", " ");
-				if (!querySubmitted)
-					tag.put("title", "Query not submitted");
-				else if (queryModel.getObject() == null)
-					tag.put("title", "Can not save malformed query");
-			}
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				getQuerySaveSupport().onSaveQuery(target, queryModel.getObject().toString());
-			}		
-			
-		}.setOutputMarkupPlaceholderTag(true));
-		
-		TextField<String> queryInput = new TextField<String>("input", queryStringModel);
-		queryInput.add(new CommitQueryBehavior(new AbstractReadOnlyModel<Project>() {
-
-			@Override
-			public Project getObject() {
-				return getProject();
-			}
-			
-		}) {
-			
-			@Override
-			protected void onInput(AjaxRequestTarget target, String inputContent) {
-				CommitListPanel.this.getFeedbackMessages().clear();
-				querySubmitted = StringUtils.trimToEmpty(queryStringModel.getObject())
-						.equals(StringUtils.trimToEmpty(inputContent));
-				target.add(saveQueryLink);
-			}
-			
-		});
-		
-		queryInput.add(new AjaxFormComponentUpdatingBehavior("clear") {
-			
-			@Override
-			protected void onUpdate(AjaxRequestTarget target) {
-				doQuery(target);
-			}
-			
-		});
-		
-		Form<?> queryForm = new Form<Void>("query");
-		queryForm.add(queryInput);
-		queryForm.add(new AjaxButton("submit") {
-
-			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-				super.onSubmit(target, form);
-				CommitListPanel.this.getFeedbackMessages().clear();
-				doQuery(target);
-			}
-			
-		});
-		add(queryForm);
+		/*
+		 * add(new AjaxLink<Void>("showSavedQueries") {
+		 * 
+		 * @Override public void onEvent(IEvent<?> event) { super.onEvent(event); if
+		 * (event.getPayload() instanceof SavedQueriesClosed) { ((SavedQueriesClosed)
+		 * event.getPayload()).getHandler().add(this); } }
+		 * 
+		 * @Override protected void onConfigure() { super.onConfigure();
+		 * setVisible(getQuerySaveSupport() != null &&
+		 * !getQuerySaveSupport().isSavedQueriesVisible()); }
+		 * 
+		 * @Override public void onClick(AjaxRequestTarget target) { send(getPage(),
+		 * Broadcast.BREADTH, new SavedQueriesOpened(target)); target.add(this); }
+		 * 
+		 * }.setOutputMarkupPlaceholderTag(true));
+		 * 
+		 * add(saveQueryLink = new AjaxLink<Void>("saveQuery") {
+		 * 
+		 * @Override protected void onConfigure() { super.onConfigure();
+		 * setEnabled(querySubmitted && queryModel.getObject() != null);
+		 * setVisible(SecurityUtils.getUser() != null && getQuerySaveSupport() != null);
+		 * }
+		 * 
+		 * @Override protected void onComponentTag(ComponentTag tag) {
+		 * super.onComponentTag(tag); configure(); if (!isEnabled()) tag.append("class",
+		 * "disabled", " "); if (!querySubmitted) tag.put("title",
+		 * "Query not submitted"); else if (queryModel.getObject() == null)
+		 * tag.put("title", "Can not save malformed query"); }
+		 * 
+		 * @Override public void onClick(AjaxRequestTarget target) {
+		 * getQuerySaveSupport().onSaveQuery(target, queryModel.getObject().toString());
+		 * }
+		 * 
+		 * }.setOutputMarkupPlaceholderTag(true));
+		 * 
+		 * TextField<String> queryInput = new TextField<String>("input",
+		 * queryStringModel); queryInput.add(new CommitQueryBehavior(new
+		 * AbstractReadOnlyModel<Project>() {
+		 * 
+		 * @Override public Project getObject() { return getProject(); }
+		 * 
+		 * }) {
+		 * 
+		 * @Override protected void onInput(AjaxRequestTarget target, String
+		 * inputContent) { CommitListPanel.this.getFeedbackMessages().clear();
+		 * querySubmitted = StringUtils.trimToEmpty(queryStringModel.getObject())
+		 * .equals(StringUtils.trimToEmpty(inputContent)); target.add(saveQueryLink); }
+		 * 
+		 * });
+		 * 
+		 * queryInput.add(new AjaxFormComponentUpdatingBehavior("clear") {
+		 * 
+		 * @Override protected void onUpdate(AjaxRequestTarget target) {
+		 * doQuery(target); }
+		 * 
+		 * });
+		 * 
+		 * Form<?> queryForm = new Form<Void>("query"); queryForm.add(queryInput);
+		 * queryForm.add(new AjaxButton("submit") {
+		 * 
+		 * @Override protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+		 * super.onSubmit(target, form);
+		 * CommitListPanel.this.getFeedbackMessages().clear(); doQuery(target); }
+		 * 
+		 * }); add(queryForm);
+		 */
 		
 		body = new WebMarkupContainer("body") {
 			
