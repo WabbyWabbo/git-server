@@ -476,9 +476,11 @@ public abstract class RevisionDiffPanel extends Panel {
 		 * });
 		 */
 		
-		Form<?> pathFilterForm = new Form<Void>("pathFilter");
-		TextField<String> filterInput;
-		pathFilterForm.add(filterInput = new TextField<String>("input", pathFilterModel));
+		/*
+		 * Form<?> pathFilterForm = new Form<Void>("pathFilter"); TextField<String>
+		 * filterInput; pathFilterForm.add(filterInput = new TextField<String>("input",
+		 * pathFilterModel));
+		 */
 		
 		Set<String> setOfInvolvedPaths = new HashSet<>();
 		for (DiffEntry diffEntry: diffEntriesModel.getObject()) {
@@ -502,49 +504,42 @@ public abstract class RevisionDiffPanel extends Panel {
 		List<String> listOfInvolvedPaths = new ArrayList<>(setOfInvolvedPaths);
 		listOfInvolvedPaths.sort(new PathComparator());
 		
-		filterInput.add(new PatternSetAssistBehavior() {
+		/*
+		 * filterInput.add(new PatternSetAssistBehavior() {
+		 * 
+		 * @Override protected List<InputSuggestion> suggest(String matchWith) { return
+		 * SuggestionUtils.suggestPaths(listOfInvolvedPaths, matchWith); }
+		 * 
+		 * @Override protected List<String> getHints(TerminalExpect terminalExpect) {
+		 * return Lists.newArrayList(
+		 * "Path containing spaces or starting with dash needs to be quoted",
+		 * "Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. Prefix with '-' to exclude"
+		 * ); }
+		 * 
+		 * });
+		 */
 
-			@Override
-			protected List<InputSuggestion> suggest(String matchWith) {
-				return SuggestionUtils.suggestPaths(listOfInvolvedPaths, matchWith);
-			}
-
-			@Override
-			protected List<String> getHints(TerminalExpect terminalExpect) {
-				return Lists.newArrayList(
-						"Path containing spaces or starting with dash needs to be quoted",
-						"Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. Prefix with '-' to exclude"
-						);
-			}
-			
-		});
-
-		filterInput.add(new AjaxFormComponentUpdatingBehavior("clear") {
-			
-			@Override
-			protected void onUpdate(AjaxRequestTarget target) {
-				doFilter(target);
-			}
-			
-		});
-		
-		pathFilterForm.add(new AjaxButton("submit") {
-
-			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
-				super.updateAjaxAttributes(attributes);
-				attributes.getAjaxCallListeners().add(new ConfirmLeaveListener(body));
-			}
-			
-			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-				super.onSubmit(target, form);
-				doFilter(target);
-			}
-			
-		});
-		
-		add(pathFilterForm);
+		/*
+		 * filterInput.add(new AjaxFormComponentUpdatingBehavior("clear") {
+		 * 
+		 * @Override protected void onUpdate(AjaxRequestTarget target) {
+		 * doFilter(target); }
+		 * 
+		 * });
+		 * 
+		 * pathFilterForm.add(new AjaxButton("submit") {
+		 * 
+		 * @Override protected void updateAjaxAttributes(AjaxRequestAttributes
+		 * attributes) { super.updateAjaxAttributes(attributes);
+		 * attributes.getAjaxCallListeners().add(new ConfirmLeaveListener(body)); }
+		 * 
+		 * @Override protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+		 * super.onSubmit(target, form); doFilter(target); }
+		 * 
+		 * });
+		 * 
+		 * add(pathFilterForm);
+		 */
 
 		body = new WebMarkupContainer(BODY_ID) {
 
