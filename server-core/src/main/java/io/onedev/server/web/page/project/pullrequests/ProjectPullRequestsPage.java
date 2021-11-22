@@ -67,41 +67,37 @@ public class ProjectPullRequestsPage extends ProjectPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(savedQueries = new SavedQueriesPanel<NamedPullRequestQuery>("savedQueries") {
-
-			@Override
-			protected NamedQueriesBean<NamedPullRequestQuery> newNamedQueriesBean() {
-				return new NamedPullRequestQueriesBean();
-			}
-
-			@Override
-			protected Link<Void> newQueryLink(String componentId, NamedPullRequestQuery namedQuery) {
-				return new BookmarkablePageLink<Void>(componentId, ProjectPullRequestsPage.class, 
-						ProjectPullRequestsPage.paramsOf(getProject(), namedQuery.getQuery(), 0));
-			}
-
-			@Override
-			protected QueryPersonalization<NamedPullRequestQuery> getQueryPersonalization() {
-				return getProject().getPullRequestQueryPersonalizationOfCurrentUser();
-			}
-
-			@Override
-			protected ArrayList<NamedPullRequestQuery> getGlobalQueries() {
-				return (ArrayList<NamedPullRequestQuery>) getProject().getPullRequestSetting().getNamedQueries(false);
-			}
-
-			@Override
-			protected ArrayList<NamedPullRequestQuery> getDefaultQueries() {
-				return (ArrayList<NamedPullRequestQuery>) getPullRequestSetting().getNamedQueries();
-			}
-
-			@Override
-			protected void onSaveGlobalQueries(ArrayList<NamedPullRequestQuery> namedQueries) {
-				getProject().getPullRequestSetting().setNamedQueries(namedQueries);
-				OneDev.getInstance(ProjectManager.class).save(getProject());
-			}
-
-		});
+		/*
+		 * add(savedQueries = new
+		 * SavedQueriesPanel<NamedPullRequestQuery>("savedQueries") {
+		 * 
+		 * @Override protected NamedQueriesBean<NamedPullRequestQuery>
+		 * newNamedQueriesBean() { return new NamedPullRequestQueriesBean(); }
+		 * 
+		 * @Override protected Link<Void> newQueryLink(String componentId,
+		 * NamedPullRequestQuery namedQuery) { return new
+		 * BookmarkablePageLink<Void>(componentId, ProjectPullRequestsPage.class,
+		 * ProjectPullRequestsPage.paramsOf(getProject(), namedQuery.getQuery(), 0)); }
+		 * 
+		 * @Override protected QueryPersonalization<NamedPullRequestQuery>
+		 * getQueryPersonalization() { return
+		 * getProject().getPullRequestQueryPersonalizationOfCurrentUser(); }
+		 * 
+		 * @Override protected ArrayList<NamedPullRequestQuery> getGlobalQueries() {
+		 * return (ArrayList<NamedPullRequestQuery>)
+		 * getProject().getPullRequestSetting().getNamedQueries(false); }
+		 * 
+		 * @Override protected ArrayList<NamedPullRequestQuery> getDefaultQueries() {
+		 * return (ArrayList<NamedPullRequestQuery>)
+		 * getPullRequestSetting().getNamedQueries(); }
+		 * 
+		 * @Override protected void onSaveGlobalQueries(ArrayList<NamedPullRequestQuery>
+		 * namedQueries) {
+		 * getProject().getPullRequestSetting().setNamedQueries(namedQueries);
+		 * OneDev.getInstance(ProjectManager.class).save(getProject()); }
+		 * 
+		 * });
+		 */
 		
 		add(requestList = new PullRequestListPanel("pullRequests", new IModel<String>() {
 
@@ -253,12 +249,12 @@ public class ProjectPullRequestsPage extends ProjectPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "<span class='text-nowrap'>Pull Requests</span>").setEscapeModelStrings(false);
+		return new Label(componentId, "<span class='text-nowrap'>拉取请求</span>").setEscapeModelStrings(false);
 	}
 
 	@Override
 	protected String getPageTitle() {
-		return "Pull Requests - " + getProject().getPath();
+		return "拉取请求 - " + getProject().getPath();
 	}
 	
 }

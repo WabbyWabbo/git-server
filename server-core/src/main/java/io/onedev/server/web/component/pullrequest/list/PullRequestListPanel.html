@@ -1,7 +1,7 @@
 <wicket:panel>
 	<div class="pull-request-list card">
 		<div class="card-body">
-			<div class="d-flex mb-4">
+			<!-- <div class="d-flex mb-4">
 				<form wicket:id="query" class="clearable-wrapper flex-grow-1">
 					<div class="input-group">
 						<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="Query and order pull requests here">
@@ -11,20 +11,23 @@
 					</div>
 				</form>
 				<a wicket:id="newPullRequest" class="btn btn-primary btn-icon flex-shrink-0 ml-3" title="Open new pull request"><wicket:svg href="plus" class="icon"/></a>
-			</div>
+			</div> -->
 			<div class="operations mb-5">
-				<a wicket:id="showSavedQueries" class="show-saved-queries text-gray mr-4 mb-2 text-nowrap d-inline-block">
+				<!-- <a wicket:id="showSavedQueries" class="show-saved-queries text-gray mr-4 mb-2 text-nowrap d-inline-block">
 					<wicket:svg href="eye" class="icon"></wicket:svg> Show Saved Queries
 				</a>
 				<a wicket:id="saveQuery" class="save-query text-gray mr-4 mb-2 text-nowrap d-inline-block">
 					<wicket:svg href="save" class="icon"></wicket:svg> Save Query
+				</a> -->
+				<a wicket:id="newPullRequest" class="new-pullrequest text-gray mr-4 mb-2 text-nowrap d-inline-block">
+					<wicket:svg href="plus" class="icon"></wicket:svg>新建
 				</a>
 				<a wicket:id="operations" class="operations text-gray mr-4 mb-2 d-inline-block text-nowrap">
-					<wicket:svg href="ellipsis-circle" class="icon"></wicket:svg> Operations
+					<wicket:svg href="ellipsis-circle" class="icon"></wicket:svg> 操作
 				</a>
-				<a wicket:id="orderBy" class="order-by text-gray mr-4 mb-2 text-nowrap d-inline-block">
-					<wicket:svg href="sort" class="icon"></wicket:svg> Order By
-				</a>
+				<!-- <a wicket:id="orderBy" class="order-by text-gray mr-4 mb-2 text-nowrap d-inline-block">
+					<wicket:svg href="sort" class="icon"></wicket:svg> 排序
+				</a> -->
 			</div>
 			<div wicket:id="body" class="body">
 				<div wicket:id="feedback"></div>
@@ -38,7 +41,7 @@
 				<a wicket:id="number" class="number h6 mr-2"></a> 
 				<span wicket:id="title" class="title h6"></span> 
 			</div>
-			<div class="flex-shrink-0 comments d-none d-lg-block text-muted" title="Comments">
+			<div class="flex-shrink-0 comments d-none d-lg-block text-muted" title="评论">
 				<wicket:svg href="comments" class="icon"></wicket:svg> <span wicket:id="comments"></span>
 			</div>
 		</div>

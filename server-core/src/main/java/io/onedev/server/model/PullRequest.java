@@ -101,59 +101,59 @@ public class PullRequest extends AbstractEntity implements Referenceable, Attach
 	
 	public static final String PROP_NUMBER_SCOPE = "numberScope";
 	
-	public static final String NAME_NUMBER = "Number";
+	public static final String NAME_NUMBER = "数量";
 
 	public static final String PROP_NUMBER = "number";
 	
-	public static final String NAME_STATUS = "Status";
+	public static final String NAME_STATUS = "转态";
 	
-	public static final String NAME_TARGET_PROJECT = "Target Project";
+	public static final String NAME_TARGET_PROJECT = "目标项目";
 	
 	public static final String PROP_TARGET_PROJECT = "targetProject";
 	
-	public static final String NAME_TARGET_BRANCH = "Target Branch";
+	public static final String NAME_TARGET_BRANCH = "目标分支";
 	
 	public static final String PROP_TARGET_BRANCH = "targetBranch";
 	
-	public static final String NAME_SOURCE_PROJECT = "Source Project";
+	public static final String NAME_SOURCE_PROJECT = "源项目";
 	
 	public static final String PROP_SOURCE_PROJECT = "sourceProject";
 	
-	public static final String NAME_SOURCE_BRANCH = "Source Branch";
+	public static final String NAME_SOURCE_BRANCH = "源分支";
 	
 	public static final String PROP_SOURCE_BRANCH = "sourceBranch";
 	
-	public static final String NAME_TITLE = "Title";
+	public static final String NAME_TITLE = "标题";
 	
 	public static final String PROP_TITLE = "title";
 	
-	public static final String NAME_DESCRIPTION = "Description";
+	public static final String NAME_DESCRIPTION = "描述";
 	
 	public static final String PROP_DESCRIPTION = "description";
 	
-	public static final String NAME_COMMENT = "Comment";
+	public static final String NAME_COMMENT = "评论";
 
 	public static final String PROP_COMMENTS = "comments";
 	
-	public static final String NAME_COMMENT_COUNT = "Comment Count";
+	public static final String NAME_COMMENT_COUNT = "评论数量";
 	
 	public static final String PROP_COMMENT_COUNT = "commentCount";
 
-	public static final String NAME_SUBMITTER = "Submitter";
+	public static final String NAME_SUBMITTER = "提交者";
 	
 	public static final String PROP_SUBMITTER = "submitter";
 	
-	public static final String NAME_SUBMIT_DATE = "Submit Date";
+	public static final String NAME_SUBMIT_DATE = "提交日期";
 	
 	public static final String PROP_SUBMIT_DATE = "submitDate";
 	
-	public static final String NAME_UPDATE_DATE = "Update Date";
+	public static final String NAME_UPDATE_DATE = "更新日期";
 	
 	public static final String PROP_LAST_UPDATE = "lastUpdate";
 	
-	public static final String NAME_CLOSE_DATE = "Close Date";
+	public static final String NAME_CLOSE_DATE = "关闭日期";
 	
-	public static final String NAME_MERGE_STRATEGY = "Merge Strategy";
+	public static final String NAME_MERGE_STRATEGY = "合并 ";
 	
 	public static final String PROP_MERGE_STRATEGY = "mergeStrategy";
 	

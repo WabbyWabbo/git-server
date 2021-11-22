@@ -208,45 +208,33 @@ public class ProjectListPanel extends Panel {
 //			
 //		}.setOutputMarkupPlaceholderTag(true));
 		
-		add(new DropdownLink("orderBy") {
-
-			@Override
-			protected Component newContent(String id, FloatingPanel dropdown) {
-				List<String> orderFields = new ArrayList<>(Project.ORDER_FIELDS.keySet());
-				return new OrderEditPanel(id, orderFields, new IModel<List<EntitySort>> () {
-
-					@Override
-					public void detach() {
-					}
-
-					@Override
-					public List<EntitySort> getObject() {
-						ProjectQuery query = parse(queryStringModel.getObject(), new ProjectQuery());
-						ProjectListPanel.this.getFeedbackMessages().clear();
-						if (query != null) 
-							return query.getSorts();
-						else
-							return new ArrayList<>();
-					}
-
-					@Override
-					public void setObject(List<EntitySort> object) {
-						ProjectQuery query = parse(queryStringModel.getObject(), new ProjectQuery());
-						ProjectListPanel.this.getFeedbackMessages().clear();
-						if (query == null)
-							query = new ProjectQuery();
-						query.getSorts().clear();
-						query.getSorts().addAll(object);
-						queryStringModel.setObject(query.toString());
-						AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class); 
-						target.add(queryInput);
-						doQuery(target);
-					}
-					
-				});
-			}
-			
-		});
+		/*
+		 * add(new DropdownLink("orderBy") {
+		 * 
+		 * @Override protected Component newContent(String id, FloatingPanel dropdown) {
+		 * List<String> orderFields = new ArrayList<>(Project.ORDER_FIELDS.keySet());
+		 * return new OrderEditPanel(id, orderFields, new IModel<List<EntitySort>> () {
+		 * 
+		 * @Override public void detach() { }
+		 * 
+		 * @Override public List<EntitySort> getObject() { ProjectQuery query =
+		 * parse(queryStringModel.getObject(), new ProjectQuery());
+		 * ProjectListPanel.this.getFeedbackMessages().clear(); if (query != null)
+		 * return query.getSorts(); else return new ArrayList<>(); }
+		 * 
+		 * @Override public void setObject(List<EntitySort> object) { ProjectQuery query
+		 * = parse(queryStringModel.getObject(), new ProjectQuery());
+		 * ProjectListPanel.this.getFeedbackMessages().clear(); if (query == null) query
+		 * = new ProjectQuery(); query.getSorts().clear();
+		 * query.getSorts().addAll(object);
+		 * queryStringModel.setObject(query.toString()); AjaxRequestTarget target =
+		 * RequestCycle.get().find(AjaxRequestTarget.class); target.add(queryInput);
+		 * doQuery(target); }
+		 * 
+		 * }); }
+		 * 
+		 * });
+		 */
 		
 		boolean canCreateProjects;
 		if (getParentProject() != null)
@@ -329,7 +317,7 @@ public class ProjectListPanel extends Panel {
 												
 												@Override
 												protected String getConfirmMessage() {
-													return "输入 <code>yes</code> 来移动已选项目 '" + getTargetProject() + "'";
+													return "输入 <code>yes</code> 来移动已选项目至 '" + getTargetProject() + "'";
 												}
 												
 												@Override

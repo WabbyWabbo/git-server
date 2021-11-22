@@ -192,57 +192,43 @@ public abstract class PullRequestListPanel extends Panel {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(new AjaxLink<Void>("showSavedQueries") {
+		/*
+		 * add(new AjaxLink<Void>("showSavedQueries") {
+		 * 
+		 * @Override public void onEvent(IEvent<?> event) { super.onEvent(event); if
+		 * (event.getPayload() instanceof SavedQueriesClosed) { ((SavedQueriesClosed)
+		 * event.getPayload()).getHandler().add(this); } }
+		 * 
+		 * @Override protected void onConfigure() { super.onConfigure();
+		 * setVisible(getQuerySaveSupport() != null &&
+		 * !getQuerySaveSupport().isSavedQueriesVisible()); }
+		 * 
+		 * @Override public void onClick(AjaxRequestTarget target) { send(getPage(),
+		 * Broadcast.BREADTH, new SavedQueriesOpened(target)); target.add(this); }
+		 * 
+		 * }.setOutputMarkupPlaceholderTag(true));
+		 */
 
-			@Override
-			public void onEvent(IEvent<?> event) {
-				super.onEvent(event);
-				if (event.getPayload() instanceof SavedQueriesClosed) {
-					((SavedQueriesClosed) event.getPayload()).getHandler().add(this);
-				}
-			}
-
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setVisible(getQuerySaveSupport() != null && !getQuerySaveSupport().isSavedQueriesVisible());
-			}
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				send(getPage(), Broadcast.BREADTH, new SavedQueriesOpened(target));
-				target.add(this);
-			}
-			
-		}.setOutputMarkupPlaceholderTag(true));
-
-		add(saveQueryLink = new AjaxLink<Void>("saveQuery") {
-
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setEnabled(querySubmitted && queryModel.getObject() != null);
-				setVisible(SecurityUtils.getUser() != null && getQuerySaveSupport() != null);
-			}
-
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				configure();
-				if (!isEnabled()) 
-					tag.append("class", "disabled", " ");
-				if (!querySubmitted)
-					tag.put("title", "Query not submitted");
-				else if (queryModel.getObject() == null)
-					tag.put("title", "Can not save malformed query");
-			}
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				getQuerySaveSupport().onSaveQuery(target, queryModel.getObject().toString());
-			}		
-			
-		}.setOutputMarkupPlaceholderTag(true));
+		/*
+		 * add(saveQueryLink = new AjaxLink<Void>("saveQuery") {
+		 * 
+		 * @Override protected void onConfigure() { super.onConfigure();
+		 * setEnabled(querySubmitted && queryModel.getObject() != null);
+		 * setVisible(SecurityUtils.getUser() != null && getQuerySaveSupport() != null);
+		 * }
+		 * 
+		 * @Override protected void onComponentTag(ComponentTag tag) {
+		 * super.onComponentTag(tag); configure(); if (!isEnabled()) tag.append("class",
+		 * "disabled", " "); if (!querySubmitted) tag.put("title",
+		 * "Query not submitted"); else if (queryModel.getObject() == null)
+		 * tag.put("title", "Can not save malformed query"); }
+		 * 
+		 * @Override public void onClick(AjaxRequestTarget target) {
+		 * getQuerySaveSupport().onSaveQuery(target, queryModel.getObject().toString());
+		 * }
+		 * 
+		 * }.setOutputMarkupPlaceholderTag(true));
+		 */
 		
 		BasePage page = (BasePage) getPage();
 		
@@ -256,7 +242,7 @@ public abstract class PullRequestListPanel extends Panel {
 
 					@Override
 					public String getLabel() {
-						return "Discard Selected Pull Requests";
+						return "丢弃选中项";
 					}
 					
 					@Override
@@ -271,7 +257,7 @@ public abstract class PullRequestListPanel extends Panel {
 								for (IModel<PullRequest> each: selectionColumn.getSelections()) {
 									PullRequest request = each.getObject();
 									if (!request.isOpen()) {
-										errorMessage = "Pull request #" + request.getNumber() + " already closed";
+										errorMessage = "拉取请求 #" + request.getNumber() + " 已关闭";
 										break;
 									}
 								}
@@ -291,7 +277,7 @@ public abstract class PullRequestListPanel extends Panel {
 										
 										@Override
 										protected String getConfirmMessage() {
-											return "Type <code>yes</code> below to discard selected pull requests";
+											return "输入 <code>yes</code> 来丢弃选中的拉取请求";
 										}
 										
 										@Override
@@ -316,7 +302,7 @@ public abstract class PullRequestListPanel extends Panel {
 								configure();
 								if (!isEnabled()) {
 									tag.put("disabled", "disabled");
-									tag.put("title", "Please select pull requests to discard");
+									tag.put("title", "请选中要丢弃的项");
 								}
 							}
 							
@@ -329,7 +315,7 @@ public abstract class PullRequestListPanel extends Panel {
 
 					@Override
 					public String getLabel() {
-						return "Delete Selected Pull Requests";
+						return "删除选中项";
 					}
 					
 					@Override
@@ -339,7 +325,7 @@ public abstract class PullRequestListPanel extends Panel {
 							@Override
 							protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 								super.updateAjaxAttributes(attributes);
-								attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete selected pull requests?"));
+								attributes.getAjaxCallListeners().add(new ConfirmClickListener("确定要删除选中项吗?"));
 							}
 
 							@Override
@@ -365,7 +351,7 @@ public abstract class PullRequestListPanel extends Panel {
 								configure();
 								if (!isEnabled()) {
 									tag.put("disabled", "disabled");
-									tag.put("title", "Please select pull requests to delete");
+									tag.put("title", "请选择要删除的项");
 								}
 							}
 							
@@ -374,142 +360,97 @@ public abstract class PullRequestListPanel extends Panel {
 					
 				});
 				
-				menuItems.add(new MenuItem() {
-
-					@Override
-					public String getLabel() {
-						return "Discard All Queried Pull Requests";
-					}
-					
-					@Override
-					public WebMarkupContainer newLink(String id) {
-						return new AjaxLink<Void>(id) {
-
-							@SuppressWarnings("unchecked")
-							@Override
-							public void onClick(AjaxRequestTarget target) {
-								dropdown.close();
-
-								String errorMessage = null;
-								for (Iterator<PullRequest> it = (Iterator<PullRequest>) dataProvider.iterator(0, requestsTable.getItemCount()); it.hasNext();) {
-									PullRequest request = it.next();
-									if (!request.isOpen()) {
-										errorMessage = "Pull request #" + request.getNumber() + " already closed";
-										break;
-									}
-								}
-								
-								if (errorMessage != null) {
-									page.alert(target, errorMessage);
-								} else {
-									new ConfirmModalPanel(target) {
-										
-										@Override
-										protected void onConfirm(AjaxRequestTarget target) {
-											for (Iterator<PullRequest> it = (Iterator<PullRequest>) dataProvider.iterator(0, requestsTable.getItemCount()); it.hasNext();)
-												OneDev.getInstance(PullRequestManager.class).discard(it.next(), null);
-											target.add(body);
-											selectionColumn.getSelections().clear();
-										}
-										
-										@Override
-										protected String getConfirmMessage() {
-											return "Type <code>yes</code> below to discard all queried pull requests";
-										}
-										
-										@Override
-										protected String getConfirmInput() {
-											return "yes";
-										}
-										
-									};
-								}
-								
-							}
-							
-							@Override
-							protected void onConfigure() {
-								super.onConfigure();
-								setEnabled(requestsTable.getItemCount() != 0);
-							}
-							
-							@Override
-							protected void onComponentTag(ComponentTag tag) {
-								super.onComponentTag(tag);
-								configure();
-								if (!isEnabled()) {
-									tag.put("disabled", "disabled");
-									tag.put("title", "No pull requests to discard");
-								}
-							}
-							
-						};
-					}
-					
-				});
-				
-				menuItems.add(new MenuItem() {
-
-					@Override
-					public String getLabel() {
-						return "Delete All Queried Pull Requests";
-					}
-					
-					@Override
-					public WebMarkupContainer newLink(String id) {
-						return new AjaxLink<Void>(id) {
-
-							@SuppressWarnings("unchecked")
-							@Override
-							public void onClick(AjaxRequestTarget target) {
-								dropdown.close();
-								
-								new ConfirmModalPanel(target) {
-									
-									@Override
-									protected void onConfirm(AjaxRequestTarget target) {
-										Collection<PullRequest> requests = new ArrayList<>();
-										for (Iterator<PullRequest> it = (Iterator<PullRequest>) dataProvider.iterator(0, requestsTable.getItemCount()); it.hasNext();)
-											requests.add(it.next());
-										OneDev.getInstance(PullRequestManager.class).delete(requests);
-										target.add(body);
-										selectionColumn.getSelections().clear();
-									}
-									
-									@Override
-									protected String getConfirmMessage() {
-										return "Type <code>yes</code> below to delete all queried pull requests";
-									}
-									
-									@Override
-									protected String getConfirmInput() {
-										return "yes";
-									}
-									
-								};
-								
-							}
-							
-							@Override
-							protected void onConfigure() {
-								super.onConfigure();
-								setEnabled(requestsTable.getItemCount() != 0);
-							}
-							
-							@Override
-							protected void onComponentTag(ComponentTag tag) {
-								super.onComponentTag(tag);
-								configure();
-								if (!isEnabled()) {
-									tag.put("disabled", "disabled");
-									tag.put("title", "No pull requests to delete");
-								}
-							}
-							
-						};
-					}
-					
-				});
+				/*
+				 * menuItems.add(new MenuItem() {
+				 * 
+				 * @Override public String getLabel() { return
+				 * "Discard All Queried Pull Requests"; }
+				 * 
+				 * @Override public WebMarkupContainer newLink(String id) { return new
+				 * AjaxLink<Void>(id) {
+				 * 
+				 * @SuppressWarnings("unchecked")
+				 * 
+				 * @Override public void onClick(AjaxRequestTarget target) { dropdown.close();
+				 * 
+				 * String errorMessage = null; for (Iterator<PullRequest> it =
+				 * (Iterator<PullRequest>) dataProvider.iterator(0,
+				 * requestsTable.getItemCount()); it.hasNext();) { PullRequest request =
+				 * it.next(); if (!request.isOpen()) { errorMessage = "Pull request #" +
+				 * request.getNumber() + " already closed"; break; } }
+				 * 
+				 * if (errorMessage != null) { page.alert(target, errorMessage); } else { new
+				 * ConfirmModalPanel(target) {
+				 * 
+				 * @Override protected void onConfirm(AjaxRequestTarget target) { for
+				 * (Iterator<PullRequest> it = (Iterator<PullRequest>) dataProvider.iterator(0,
+				 * requestsTable.getItemCount()); it.hasNext();)
+				 * OneDev.getInstance(PullRequestManager.class).discard(it.next(), null);
+				 * target.add(body); selectionColumn.getSelections().clear(); }
+				 * 
+				 * @Override protected String getConfirmMessage() { return
+				 * "Type <code>yes</code> below to discard all queried pull requests"; }
+				 * 
+				 * @Override protected String getConfirmInput() { return "yes"; }
+				 * 
+				 * }; }
+				 * 
+				 * }
+				 * 
+				 * @Override protected void onConfigure() { super.onConfigure();
+				 * setEnabled(requestsTable.getItemCount() != 0); }
+				 * 
+				 * @Override protected void onComponentTag(ComponentTag tag) {
+				 * super.onComponentTag(tag); configure(); if (!isEnabled()) {
+				 * tag.put("disabled", "disabled"); tag.put("title",
+				 * "No pull requests to discard"); } }
+				 * 
+				 * }; }
+				 * 
+				 * });
+				 * 
+				 * menuItems.add(new MenuItem() {
+				 * 
+				 * @Override public String getLabel() { return
+				 * "Delete All Queried Pull Requests"; }
+				 * 
+				 * @Override public WebMarkupContainer newLink(String id) { return new
+				 * AjaxLink<Void>(id) {
+				 * 
+				 * @SuppressWarnings("unchecked")
+				 * 
+				 * @Override public void onClick(AjaxRequestTarget target) { dropdown.close();
+				 * 
+				 * new ConfirmModalPanel(target) {
+				 * 
+				 * @Override protected void onConfirm(AjaxRequestTarget target) {
+				 * Collection<PullRequest> requests = new ArrayList<>(); for
+				 * (Iterator<PullRequest> it = (Iterator<PullRequest>) dataProvider.iterator(0,
+				 * requestsTable.getItemCount()); it.hasNext();) requests.add(it.next());
+				 * OneDev.getInstance(PullRequestManager.class).delete(requests);
+				 * target.add(body); selectionColumn.getSelections().clear(); }
+				 * 
+				 * @Override protected String getConfirmMessage() { return
+				 * "Type <code>yes</code> below to delete all queried pull requests"; }
+				 * 
+				 * @Override protected String getConfirmInput() { return "yes"; }
+				 * 
+				 * };
+				 * 
+				 * }
+				 * 
+				 * @Override protected void onConfigure() { super.onConfigure();
+				 * setEnabled(requestsTable.getItemCount() != 0); }
+				 * 
+				 * @Override protected void onComponentTag(ComponentTag tag) {
+				 * super.onComponentTag(tag); configure(); if (!isEnabled()) {
+				 * tag.put("disabled", "disabled"); tag.put("title",
+				 * "No pull requests to delete"); } }
+				 * 
+				 * }; }
+				 * 
+				 * });
+				 */
 				
 				return menuItems;
 			}
@@ -522,90 +463,67 @@ public abstract class PullRequestListPanel extends Panel {
 			
 		});
 		
-		add(new DropdownLink("orderBy") {
-
-			@Override
-			protected Component newContent(String id, FloatingPanel dropdown) {
-				List<String> orderFields = new ArrayList<>(PullRequest.ORDER_FIELDS.keySet());
-				if (getProject() != null)
-					orderFields.remove(PullRequest.NAME_TARGET_PROJECT);
-				
-				return new OrderEditPanel(id, orderFields, new IModel<List<EntitySort>> () {
-
-					@Override
-					public void detach() {
-					}
-
-					@Override
-					public List<EntitySort> getObject() {
-						PullRequestQuery query = parse(queryStringModel.getObject(), new PullRequestQuery());
-						PullRequestListPanel.this.getFeedbackMessages().clear();
-						if (query != null) 
-							return query.getSorts();
-						else
-							return new ArrayList<>();
-					}
-
-					@Override
-					public void setObject(List<EntitySort> object) {
-						PullRequestQuery query = parse(queryStringModel.getObject(), new PullRequestQuery());
-						PullRequestListPanel.this.getFeedbackMessages().clear();
-						if (query == null)
-							query = new PullRequestQuery();
-						query.getSorts().clear();
-						query.getSorts().addAll(object);
-						queryStringModel.setObject(query.toString());
-						AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class); 
-						target.add(queryInput);
-						doQuery(target);
-					}
-					
-				});
-			}
-			
-		});	
+		/*
+		 * add(new DropdownLink("orderBy") {
+		 * 
+		 * @Override protected Component newContent(String id, FloatingPanel dropdown) {
+		 * List<String> orderFields = new
+		 * ArrayList<>(PullRequest.ORDER_FIELDS.keySet()); if (getProject() != null)
+		 * orderFields.remove(PullRequest.NAME_TARGET_PROJECT);
+		 * 
+		 * return new OrderEditPanel(id, orderFields, new IModel<List<EntitySort>> () {
+		 * 
+		 * @Override public void detach() { }
+		 * 
+		 * @Override public List<EntitySort> getObject() { PullRequestQuery query =
+		 * parse(queryStringModel.getObject(), new PullRequestQuery());
+		 * PullRequestListPanel.this.getFeedbackMessages().clear(); if (query != null)
+		 * return query.getSorts(); else return new ArrayList<>(); }
+		 * 
+		 * @Override public void setObject(List<EntitySort> object) { PullRequestQuery
+		 * query = parse(queryStringModel.getObject(), new PullRequestQuery());
+		 * PullRequestListPanel.this.getFeedbackMessages().clear(); if (query == null)
+		 * query = new PullRequestQuery(); query.getSorts().clear();
+		 * query.getSorts().addAll(object);
+		 * queryStringModel.setObject(query.toString()); AjaxRequestTarget target =
+		 * RequestCycle.get().find(AjaxRequestTarget.class); target.add(queryInput);
+		 * doQuery(target); }
+		 * 
+		 * }); }
+		 * 
+		 * });
+		 */	
 		
-		queryInput = new TextField<String>("input", queryStringModel);
-		queryInput.add(new PullRequestQueryBehavior(new AbstractReadOnlyModel<Project>() {
-
-			@Override
-			public Project getObject() {
-				return getProject();
-			}
-			
-		}) {
-			
-			@Override
-			protected void onInput(AjaxRequestTarget target, String inputContent) {
-				PullRequestListPanel.this.getFeedbackMessages().clear();
-				querySubmitted = StringUtils.trimToEmpty(queryStringModel.getObject())
-						.equals(StringUtils.trimToEmpty(inputContent));
-				target.add(saveQueryLink);
-			}
-			
-		});
-		queryInput.add(new AjaxFormComponentUpdatingBehavior("clear") {
-			
-			@Override
-			protected void onUpdate(AjaxRequestTarget target) {
-				doQuery(target);
-			}
-			
-		});
-		
-		Form<?> queryForm = new Form<Void>("query");
-		queryForm.add(queryInput);
-		queryForm.add(new AjaxButton("submit") {
-
-			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-				super.onSubmit(target, form);
-				PullRequestListPanel.this.getFeedbackMessages().clear();
-				doQuery(target);
-			}
-			
-		});
-		add(queryForm);
+		/*
+		 * queryInput = new TextField<String>("input", queryStringModel);
+		 * queryInput.add(new PullRequestQueryBehavior(new
+		 * AbstractReadOnlyModel<Project>() {
+		 * 
+		 * @Override public Project getObject() { return getProject(); }
+		 * 
+		 * }) {
+		 * 
+		 * @Override protected void onInput(AjaxRequestTarget target, String
+		 * inputContent) { PullRequestListPanel.this.getFeedbackMessages().clear();
+		 * querySubmitted = StringUtils.trimToEmpty(queryStringModel.getObject())
+		 * .equals(StringUtils.trimToEmpty(inputContent)); target.add(saveQueryLink); }
+		 * 
+		 * }); queryInput.add(new AjaxFormComponentUpdatingBehavior("clear") {
+		 * 
+		 * @Override protected void onUpdate(AjaxRequestTarget target) {
+		 * doQuery(target); }
+		 * 
+		 * });
+		 * 
+		 * Form<?> queryForm = new Form<Void>("query"); queryForm.add(queryInput);
+		 * queryForm.add(new AjaxButton("submit") {
+		 * 
+		 * @Override protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+		 * super.onSubmit(target, form);
+		 * PullRequestListPanel.this.getFeedbackMessages().clear(); doQuery(target); }
+		 * 
+		 * }); add(queryForm);
+		 */
 		
 		if (getProject() == null) {
 			add(new DropdownLink("newPullRequest") {
