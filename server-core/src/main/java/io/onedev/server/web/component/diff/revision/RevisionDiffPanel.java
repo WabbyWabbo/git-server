@@ -443,52 +443,38 @@ public abstract class RevisionDiffPanel extends Panel {
 			})));
 		}
 		
-		add(new MenuLink("whitespaceOption") {
-
-			@Override
-			protected List<MenuItem> getMenuItems(FloatingPanel dropdown) {
-				List<MenuItem> menuItems = new ArrayList<>();
-				
-				for (WhitespaceOption each: WhitespaceOption.values()) {
-					menuItems.add(new MenuItem() {
-
-						@Override
-						public String getLabel() {
-							return each.getDescription();
-						}
-
-						@Override
-						public boolean isSelected() {
-							return whitespaceOptionModel.getObject() == each;
-						}
-
-						@Override
-						public AbstractLink newLink(String id) {
-							return new AjaxLink<Void>(id) {
-
-								@Override
-								public void onClick(AjaxRequestTarget target) {
-									dropdown.close();
-									whitespaceOptionModel.setObject(each);
-									target.add(body);
-								}
-
-								@Override
-								protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
-									super.updateAjaxAttributes(attributes);
-									attributes.getAjaxCallListeners().add(new ConfirmLeaveListener(body));
-								}
-								
-							};
-						}
-						
-					});
-				}
-
-				return menuItems;
-			}
-			
-		});
+		/*
+		 * add(new MenuLink("whitespaceOption") {
+		 * 
+		 * @Override protected List<MenuItem> getMenuItems(FloatingPanel dropdown) {
+		 * List<MenuItem> menuItems = new ArrayList<>();
+		 * 
+		 * for (WhitespaceOption each: WhitespaceOption.values()) { menuItems.add(new
+		 * MenuItem() {
+		 * 
+		 * @Override public String getLabel() { return each.getDescription(); }
+		 * 
+		 * @Override public boolean isSelected() { return
+		 * whitespaceOptionModel.getObject() == each; }
+		 * 
+		 * @Override public AbstractLink newLink(String id) { return new
+		 * AjaxLink<Void>(id) {
+		 * 
+		 * @Override public void onClick(AjaxRequestTarget target) { dropdown.close();
+		 * whitespaceOptionModel.setObject(each); target.add(body); }
+		 * 
+		 * @Override protected void updateAjaxAttributes(AjaxRequestAttributes
+		 * attributes) { super.updateAjaxAttributes(attributes);
+		 * attributes.getAjaxCallListeners().add(new ConfirmLeaveListener(body)); }
+		 * 
+		 * }; }
+		 * 
+		 * }); }
+		 * 
+		 * return menuItems; }
+		 * 
+		 * });
+		 */
 		
 		Form<?> pathFilterForm = new Form<Void>("pathFilter");
 		TextField<String> filterInput;
