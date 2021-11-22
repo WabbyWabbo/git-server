@@ -24,7 +24,7 @@ public class TagBean implements Validatable, Serializable {
 	
 	private String message;
 	
-	@Editable(order=100, name="Tag Name")
+	@Editable(order=100, name="标签名")
 	@NotEmpty
 	@OmitName
 	public String getName() {
@@ -35,7 +35,7 @@ public class TagBean implements Validatable, Serializable {
 		this.name = name;
 	}
 
-	@Editable(order=200, name="Tag Message")
+	@Editable(order=200, name="标签信息")
 	@Multiline
 	@OmitName
 	public String getMessage() {
@@ -49,7 +49,7 @@ public class TagBean implements Validatable, Serializable {
 	@Override
 	public boolean isValid(ConstraintValidatorContext context) {
 		if (!Repository.isValidRefName(Constants.R_TAGS + getName())) {
-            context.buildConstraintViolationWithTemplate("Invalid tag name")
+            context.buildConstraintViolationWithTemplate("非法标签名")
 		            .addPropertyNode("name").addConstraintViolation()
 		            .disableDefaultConstraintViolation();
             return false;

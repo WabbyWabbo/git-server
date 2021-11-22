@@ -3,10 +3,10 @@
 		<div class="card-body">
 			<div class="head d-flex align-items-center flex-wrap">
 				<div class="clearable-wrapper mr-3 mb-4">
-					<input wicket:id="filterTags" class="form-control search" placeholder="Filter tags...">
+					<input wicket:id="filterTags" class="form-control search" placeholder="搜索标签">
 				</div>
 				<div class="mb-4 mr-3">
-					<a wicket:id="createTag" class="btn btn-primary btn-icon" title="Create tag"><wicket:svg href="plus" class="icon"></wicket:svg></a>
+					<a wicket:id="createTag" class="btn btn-primary btn-icon" title="创建标签"><wicket:svg href="plus" class="icon"></wicket:svg></a>
 				</div>
 			</div>
             <div class="body">
@@ -27,13 +27,13 @@
 			<span wicket:id="contributor" class="contributor"></span>
 		</div>
 		<div class="actions mb-2">
-			<a wicket:id="download" class="btn btn-light btn-hover-primary btn-sm btn-icon mr-2" title="Download tag archive"><wicket:svg href="download" class="icon"/></a>
-			<a wicket:id="delete" class="btn btn-light btn-hover-danger btn-sm btn-icon" title="Delete this tag"><wicket:svg href="trash" class="icon"></wicket:svg></a>
+			<a wicket:id="download" class="btn btn-light btn-hover-primary btn-sm btn-icon mr-2" title="下载"><wicket:svg href="download" class="icon"/></a>
+			<a wicket:id="delete" class="btn btn-light btn-hover-danger btn-sm btn-icon" title="删除"><wicket:svg href="trash" class="icon"></wicket:svg></a>
 		</div>
 	</wicket:fragment>
 	<wicket:fragment wicket:id="annotatedFrag">
 		<wicket:enclosure child="author">
-		By <a wicket:id="author"></a> 
+		由 <a wicket:id="author"></a>创建 
 		</wicket:enclosure>
 		<a wicket:id="messageToggle" class="btn btn-xs h-75 btn-secondary btn-icon ml-1"><wicket:svg href="ellipsis" class="icon"/></a>
 		<pre wicket:id="message" class="message text-break"></pre>
@@ -41,7 +41,7 @@
 	<wicket:fragment wicket:id="createTagFrag">
 		<form wicket:id="form" class="create-tag">
 			<div class="modal-header">
-				<h5 class="modal-title">Create Tag</h5>
+				<h5 class="modal-title">创建标签</h5>
 				<button wicket:id="close" type="button" class="close"><wicket:svg href="times" class="icon"/></button>
 			</div>
 			<div class="modal-body">
@@ -49,7 +49,7 @@
 				<div wicket:id="editor"></div>
 			</div>
 			<div class="modal-footer">
-				<button wicket:id="create" class="btn btn-primary">Create</button>
+				<button wicket:id="create" class="btn btn-primary">创建</button>
 				<button wicket:id="cancel" class="btn btn-secondary">取消</button>
 			</div>
 		</form>

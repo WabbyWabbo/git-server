@@ -177,7 +177,7 @@ public abstract class BlobViewPanel extends Panel {
 
 			@Override
 			public String getObject() {
-				return context.getProject().getBlob(context.getBlobIdent(), true).getText().getLines().size() + " lines";
+				return context.getProject().getBlob(context.getBlobIdent(), true).getText().getLines().size() + " 行";
 			}
 			
 		}) {

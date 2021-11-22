@@ -220,7 +220,7 @@ public class FolderViewPanel extends Panel {
 				item.add(pathLink);
 				
 				if (item.getIndex() == 0)
-					item.add(new Label("lastCommit", "<span class='text-warning'>载入最新的提交信息中o...</span>").setEscapeModelStrings(false));
+					item.add(new Label("lastCommit", "<span class='text-warning'>载入最新的提交信息中...</span>").setEscapeModelStrings(false));
 				else
 					item.add(new Label("lastCommit"));
 			}

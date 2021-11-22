@@ -10,29 +10,29 @@
 				</wicket:enclosure>
 				<span wicket:id="size"></span>
 				<wicket:enclosure child="lfsHint">
-				<span wicket:id="lfsHint" class="text-muted">|</span> Stored with Git LFS
+				<span wicket:id="lfsHint" class="text-muted">|</span> 通过 Git LFS存储
 				</wicket:enclosure>
 			</div>
 			<div class="tools d-flex align-items-center">
 				<div class="actions d-flex align-items-center">
 					<wicket:container wicket:id="changeActions">
 					<span wicket:id="edit">
-					<a wicket:id="link" class="btn btn-xs btn-light btn-hover-primary btn-icon" title="Edit">
+					<a wicket:id="link" class="btn btn-xs btn-light btn-hover-primary btn-icon" title="编辑">
 						<wicket:svg href="edit" class="icon"></wicket:svg>
 					</a>
 					</span>
 					<span wicket:id="delete">
-					<a wicket:id="link" class="btn btn-xs btn-light btn-hover-danger btn-icon" title="Delete">
+					<a wicket:id="link" class="btn btn-xs btn-light btn-hover-danger btn-icon" title="删除">
 						<wicket:svg href="trash" class="icon"></wicket:svg>
 					</a>
 					</span>
 					</wicket:container>
-                    <a wicket:id="raw" class="btn btn-xs btn-light btn-hover-primary btn-icon" title="Raw">
+                    <a wicket:id="raw" class="btn btn-xs btn-light btn-hover-primary btn-icon" title="原始">
 						<wicket:svg href="file" class="icon"></wicket:svg>
 					</a>
 				</div>
 				<!-- Put all options in a single line to make :empty selector working -->
-				<div class="options d-flex align-items-center"><wicket:enclosure child="viewPlain"><label class="checkbox"><input type="checkbox" wicket:id="viewPlain"> View Source</label></wicket:enclosure><wicket:enclosure child="blame"><label class="checkbox"><input type="checkbox" wicket:id="blame"> Blame</label></wicket:enclosure><wicket:container wicket:id="extraOptions"></wicket:container></div>
+				<div class="options d-flex align-items-center"><wicket:enclosure child="viewPlain"><label class="checkbox"><input type="checkbox" wicket:id="viewPlain"> View Source</label></wicket:enclosure><wicket:enclosure child="blame"><label class="checkbox"><input type="checkbox" wicket:id="blame"> 责任人</label></wicket:enclosure><wicket:container wicket:id="extraOptions"></wicket:container></div>
 				<div wicket:id="formats" class="formats d-none d-sm-block"></div>
 			</div>
 		</div>

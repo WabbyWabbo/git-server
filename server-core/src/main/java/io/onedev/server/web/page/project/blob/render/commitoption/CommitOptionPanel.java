@@ -113,7 +113,7 @@ public class CommitOptionPanel extends Panel {
 			oldName = oldPath;
 		
 		if (newContentProvider == null) { 
-			return "Delete " + oldName;
+			return "删除 " + oldName;
 		} else {
 			String newPath = context.getNewPath();
 
@@ -243,7 +243,7 @@ public class CommitOptionPanel extends Panel {
 		changesOfOthers = null;
 		
 		if (newContentProvider != null && StringUtils.isBlank(context.getNewPath())) {
-			form.error("Please specify file name.");
+			form.error("请指定文件名");
 			target.add(form);
 			return false;
 		} else {
@@ -266,11 +266,11 @@ public class CommitOptionPanel extends Panel {
 			if (newContentProvider != null) {
 				String newPath = context.getNewPath();
 				if (revision != null && context.getProject().isReviewRequiredForModification(user, revision, newPath)) {
-					form.error("Review required for this change. Please submit pull request instead");
+					form.error("此次变更需要审查，请提交拉取请求。");
 					target.add(form);
 					return false;
 				} else if (revision != null && context.getProject().isBuildRequiredForModification(user, revision, newPath)) {
-					form.error("Build required for this change. Please submit pull request instead");
+					form.error("此次构建需要审查，请提交拉取请求。");
 					target.add(form);
 					return false;
 				}
@@ -298,13 +298,13 @@ public class CommitOptionPanel extends Panel {
 					newCommitId = new BlobEdits(oldPaths, newBlobs).commit(repository, refName, 
 							prevCommitId, prevCommitId, user.asPerson(), commitMessage);
 				} catch (ObjectAlreadyExistsException e) {
-					form.error("A path with same name already exists. "
-							+ "Please choose a different name and try again.");
+					form.error("路径已存在，"
+							+ "请选择不同名称后重试。");
 					target.add(form);
 					break;
 				} catch (NotTreeException e) {
-					form.error("A file exists where you’re trying to create a subdirectory. "
-							+ "Choose a new path and try again..");
+					form.error("子目录时已存在， "
+							+ "请选择新路径并重试。");
 					target.add(form);
 					break;
 				} catch (ObsoleteCommitException e) {
@@ -327,14 +327,14 @@ public class CommitOptionPanel extends Panel {
 									if (newContentProvider != null) {
 										oldPaths.clear();
 										changesOfOthers = getChange(treeWalk, lastPrevCommit, prevCommit);
-										form.warn("Someone made below change since you started editing");
+										form.warn("自从您开始编辑以来，有人进行了更改");
 										break;
 									} else {
 										newCommitId = e.getOldCommitId();
 									}
 								} else {
 									changesOfOthers = getChange(treeWalk, lastPrevCommit, prevCommit);
-									form.warn("Someone made below change since you started editing");
+									form.warn("自从您开始编辑以来，有人进行了更改");
 									break;
 								}
 							} 

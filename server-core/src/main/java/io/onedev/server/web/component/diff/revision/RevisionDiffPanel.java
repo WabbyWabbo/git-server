@@ -563,7 +563,7 @@ public abstract class RevisionDiffPanel extends Panel {
 			public String getObject() {
 				String icon = String.format("<svg class='icon'><use xlink:href='%s'/></svg>", 
 						SpriteImage.getVersionedHref("arrow"));
-				return "Total " + revsionDiffModel.getObject().getDisplayChanges().size() + " files " + icon;
+				return "共 " + revsionDiffModel.getObject().getDisplayChanges().size() + " 个文件 " + icon;
 			}
 			
 		}).setEscapeModelStrings(false));
