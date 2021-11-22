@@ -25,8 +25,8 @@ public abstract class RunTaskBehavior extends AbstractPostAjaxBehavior {
 				+ "$button.addClass('disabled');"
 				+ "$button[0].prevValue = $button.val();"
 				+ "$button[0].prevHtml = $button.html();"
-				+ "$button.val($button.val() + ' in progress...');"
-				+ "$button.html($button.html() + ' in progress...');"
+				+ "$button.val($button.val() + '中...');"
+				+ "$button.html($button.html() + '中...');"
 				+ "}",
 				getComponent().getMarkupId()));
 		target.appendJavaScript(getCallbackScript());

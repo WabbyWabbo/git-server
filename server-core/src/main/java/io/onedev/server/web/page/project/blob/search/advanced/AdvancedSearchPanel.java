@@ -105,7 +105,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 		});
 		
 		List<Tab> tabs = new ArrayList<Tab>();
-		tabs.add(new AjaxActionTab(Model.of("Text occurrences")) {
+		tabs.add(new AjaxActionTab(Model.of("文件内容")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -115,7 +115,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 			
 		}.setSelected(option instanceof TextSearchOption));
 		
-		tabs.add(new AjaxActionTab(Model.of("File names")) {
+		tabs.add(new AjaxActionTab(Model.of("文件名")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -125,15 +125,14 @@ public abstract class AdvancedSearchPanel extends Panel {
 			
 		}.setSelected(option instanceof FileSearchOption));
 		
-		tabs.add(new AjaxActionTab(Model.of("Symbol names")) {
-			
-			@Override
-			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
-				option = new SymbolSearchOption();
-				onSelectTab(target);
-			}
-			
-		}.setSelected(option instanceof SymbolSearchOption));
+		/*
+		 * tabs.add(new AjaxActionTab(Model.of("Symbol names")) {
+		 * 
+		 * @Override protected void onSelect(AjaxRequestTarget target, Component
+		 * tabLink) { option = new SymbolSearchOption(); onSelectTab(target); }
+		 * 
+		 * }.setSelected(option instanceof SymbolSearchOption));
+		 */
 		
 		form.add(new Tabbable("tabs", tabs));
 

@@ -220,7 +220,7 @@ public class FolderViewPanel extends Panel {
 				item.add(pathLink);
 				
 				if (item.getIndex() == 0)
-					item.add(new Label("lastCommit", "<span class='text-warning'>Loading last commit info...</span>").setEscapeModelStrings(false));
+					item.add(new Label("lastCommit", "<span class='text-warning'>载入最新的提交信息中o...</span>").setEscapeModelStrings(false));
 				else
 					item.add(new Label("lastCommit"));
 			}
@@ -275,7 +275,7 @@ public class FolderViewPanel extends Panel {
 				if (text != null)
 					return text.getContent();
 				else
-					return "This seems like a binary file!";
+					return "无法显示二进制文件";
 			}
 			
 		}, null) {

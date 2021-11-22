@@ -167,13 +167,13 @@ public class Project extends AbstractEntity {
 	
 	private static final int BUFFER_SIZE = 1024*64;
 	
-	public static final String NAME_NAME = "Name";
+	public static final String NAME_NAME = "名称";
 	
 	public static final String PROP_NAME = "name";
 	
 	public static final String NAME_PATH = "Path";
 	
-	public static final String NAME_UPDATE_DATE = "Update Date";
+	public static final String NAME_UPDATE_DATE = "更新日期";
 	
 	public static final String PROP_UPDATE_DATE = "updateDate";
 	
@@ -380,7 +380,7 @@ public class Project extends AbstractEntity {
     
 	private transient List<Milestone> sortedMilestones;
 	
-	@Editable(order=100)
+	@Editable(name = "名称", order=100)
 	@ProjectName
 	@NotEmpty
 	public String getName() {
@@ -391,7 +391,7 @@ public class Project extends AbstractEntity {
 		this.name = name;
 	}
 
-	@Editable(order=200)
+	@Editable(name = "描述", order=200)
 	@Markdown
 	public String getDescription() {
 		return description;
